@@ -3,6 +3,7 @@ import { LuArrowRight } from "react-icons/lu";
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { titleAnimation } from "../utils/title-anime";
+import { scrollContentAnimation } from "../utils/content-anime";
 
 const Skills = () => {
     const services = [
@@ -18,11 +19,18 @@ const Skills = () => {
     const iconRefs = useRef([]);
     const titleRef = useRef(null);
     const ParRef = useRef(null);
+    const ParRef2 = useRef(null);
+    const contentRef = useRef(null);
 
     useEffect(() => {
         titleAnimation(titleRef.current);
         titleAnimation(ParRef.current);
+        titleAnimation(ParRef2.current);
     }, []);
+
+    useEffect(() => {
+        scrollContentAnimation(contentRef.current, { distance: 50, duration: 1, delay: 0.5 });
+      }, []);
 
     const animateCard = (index) => {
         const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
@@ -64,10 +72,10 @@ const Skills = () => {
                     <h2 ref={titleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mb-6">
                         Expertise & <br />Capabilities
                     </h2>
-                    <p className="text-lg md:text-2xl text-gray-300 mb-8 md:max-w-xl">
+                    <p ref={ParRef2} className="text-lg md:text-2xl text-gray-300 mb-8 md:max-w-xl">
                         Combining cyber security intelligence, automation innovation, and software engineering to build secure, scalable, and future-ready technology solutions.
                     </p>
-                    <div className="flex items-center mt-5">
+                    <div ref={contentRef} className="flex items-center mt-5">
                         <span className="text-xl md:text-2xl mr-5">All Skills</span>
 
                         <button

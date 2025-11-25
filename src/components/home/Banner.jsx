@@ -5,14 +5,25 @@ import { FaArrowDownLong } from "react-icons/fa6";
 import { MdWavingHand } from "react-icons/md";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { titleAnimation } from '../utils/title-anime';
+import { scrollContentAnimation } from '../utils/content-anime';
+
+gsap.registerPlugin(ScrollToPlugin);
 
 const Banner = () => {
   const helloRef = useRef(null);
   const titleRef = useRef(null);
+  const contentRef = useRef(null);
+  const socialRef = useRef(null);
 
   useEffect(() => {
     titleAnimation(titleRef.current);
+  }, []);
+
+  useEffect(() => {
+    scrollContentAnimation(contentRef.current, { distance: 50, duration: 1, delay: 0.5 });
+    scrollContentAnimation(socialRef.current, { distance: 50, duration: 1, delay: 0.5 });
   }, []);
 
   useEffect(() => {
@@ -26,16 +37,10 @@ const Banner = () => {
         .join("");
     };
 
-
-
     const helloText = helloRef.current;
-
     wrapLetters(helloText);
 
-    // Timeline for coordinated animation - EXACT SAME AS BEFORE
     const tl = gsap.timeline();
-
-    // Animate paragraph letters from right - EXACT SAME ANIMATION
     tl.from(helloText.querySelectorAll(".letter"), {
       x: 50,
       opacity: 0,
@@ -43,8 +48,17 @@ const Banner = () => {
       duration: 0.8,
       ease: "power2.out",
     });
-
   }, []);
+
+  // Scroll down on arrow click
+  const handleScrollDown = () => {
+    const scrollDistance = window.innerHeight; // scroll down by one viewport height
+    gsap.to(window, {
+      duration: 1.2,
+      ease: "power2.inOut",
+      scrollTo: scrollDistance,
+    });
+  };
 
   return (
     <section id='home' className="bg-[#121212] text-white h-auto lg:h-[90vh] overflow-hidden font-sans">
@@ -75,14 +89,14 @@ const Banner = () => {
             </p>
 
             <h1
-            ref={titleRef}
+              ref={titleRef}
               className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mt-4 overflow-hidden"
             >
               Cyber Security <br /> Leader
             </h1>
 
             {/* Founder text and line */}
-            <div className="lg:max-w-2xl xl:mx-0 flex flex-col xl:flex-row items-start xl:items-center gap-8 xl:gap-20 mt-6">
+            <div ref={contentRef} className="lg:max-w-2xl xl:mx-0 flex flex-col xl:flex-row items-start xl:items-center gap-8 xl:gap-20 mt-6">
               <div className="w-72 h-0.5 bg-gray-100 mx-auto xl:mx-0 hidden xl:block" />
               <p className="text-lg md:text-2xl text-start text-gray-100 font-light">
                 Founder of Ethical Den, Eduden & Hiyvr.ai
@@ -90,7 +104,7 @@ const Banner = () => {
             </div>
 
             {/* Social Icons */}
-            <div className="flex flex-col w-fit md:flex-row md:flex-wrap justify-start lg:justify-start gap-3 mt-10">
+            <div ref={socialRef} className="flex flex-col w-fit md:flex-row md:flex-wrap justify-start lg:justify-start gap-3 mt-10">
               {['LINKEDIN', 'GITHUB', 'INSTAGRAM'].map((label) => (
                 <Link
                   key={label}
@@ -102,10 +116,11 @@ const Banner = () => {
               ))}
             </div>
 
-
-
             {/* Keep Scrolling */}
-            <div className="flex items-center justify-end gap-2 mt-12">
+            <div
+              onClick={handleScrollDown}
+              className="flex items-center justify-end gap-2 mt-12 cursor-pointer"
+            >
               <p className="text-xs tracking-widest uppercase text-white text-right">
                 Keep <br /> Scrolling
               </p>
