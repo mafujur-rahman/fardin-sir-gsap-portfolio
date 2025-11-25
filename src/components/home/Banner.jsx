@@ -39,7 +39,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <section className="bg-[#121212] text-white h-auto lg:h-[90vh] overflow-hidden font-sans">
+    <section id='home' className="bg-[#121212] text-white h-auto lg:h-[90vh] overflow-hidden font-sans">
       <div className="flex flex-col lg:flex-row ">
 
         {/* Left Image */}

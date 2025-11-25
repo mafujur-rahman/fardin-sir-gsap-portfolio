@@ -1,10 +1,32 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function Footer() {
+  const companyLinks = [
+    { name: "Home", id: "home" },
+    { name: "About", id: "about" },
+    { name: "Brands", id: "brands" },
+    { name: "Skills", id: "skills" },
+    { name: "Awards", id: "awards" },
+    { name: "Contact", id: "contact" },
+  ];
+
+  // Ensure smooth scroll works in client
+  const handleScroll = (id) => {
+    const target = document.getElementById(id);
+    if (target) {
+      // Use offsetTop if parent has scroll
+      const top = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <footer className="bg-[#1f1f1f] text-white w-full pt-20 pb-10 font-sans">
+    <footer id="contact" className="bg-[#1f1f1f] text-white w-full pt-20 pb-10 font-sans">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-10">
 
         {/* BIG EMAIL */}
@@ -23,9 +45,9 @@ export default function Footer() {
             <Image
               src="/images/Fardeen-Ahmed-logo.png"
               alt="fardeen logo"
-              width={150}
-              height={50}
-              className="object-contain w-[130px] sm:w-[150px]"
+              width={550}
+              height={550}
+              className="object-cover h-10 w-auto"
             />
             <p className="text-[#bfbfbf] leading-relaxed max-w-xs">
               We can create solutions that elevate growth and sales.
@@ -36,11 +58,16 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h3 className="text-xl font-semibold">Company</h3>
             <ul className="space-y-2 text-[#cdcdcd]">
-              <li>Home</li>
-              <li>About</li>
-              <li>Contact</li>
-              <li>Blog</li>
-              <li>Landing</li>
+              {companyLinks.map((link) => (
+                <li key={link.id}>
+                  <button
+                    onClick={() => handleScroll(link.id)}
+                    className="hover:text-white transition-colors text-left"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -57,25 +84,21 @@ export default function Footer() {
           {/* CONTACT FORM */}
           <div className="flex flex-col gap-4">
             <h3 className="text-xl font-semibold">Contact</h3>
-
             <form className="flex flex-col gap-3">
               <input
                 type="text"
                 placeholder="Your Name"
                 className="border border-[#2c2c2c] px-5 py-3 bg-transparent text-white placeholder:text-[#bfbfbf] focus:outline-none"
               />
-
               <input
                 type="email"
                 placeholder="Your Email"
                 className="border border-[#2c2c2c] px-5 py-3 bg-transparent text-white placeholder:text-[#bfbfbf] focus:outline-none"
               />
-
               <textarea
                 placeholder="Your Message"
                 className="border border-[#2c2c2c] px-5 py-3 bg-transparent text-white placeholder:text-[#bfbfbf] focus:outline-none resize-none h-[84px]"
               />
-
               <button
                 type="submit"
                 className="px-6 py-3 border border-[#2c2c2c] bg-white text-black hover:bg-transparent hover:text-white transition-all"

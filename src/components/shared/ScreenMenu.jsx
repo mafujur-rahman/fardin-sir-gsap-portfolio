@@ -4,12 +4,12 @@ import Image from "next/image";
 import gsap from "gsap";
 
 const menuItems = [
-  { id: "01", name: "Homes" },
-  { id: "02", name: "About" },
-  { id: "03", name: "Portfolio" },
-  { id: "04", name: "Pages" },
-  { id: "05", name: "Blog" },
-  { id: "06", name: "Contact" },
+  { id: "home", name: "Homes" },
+  { id: "about", name: "About" },
+  { id: "skills", name: "Skills" },
+  { id: "brands", name: "Brands" },
+  { id: "awards", name: "Awards" },
+  { id: "contact", name: "Contact" },
 ];
 
 const FullScreenMenu = forwardRef(({ onClose }, ref) => {
@@ -55,6 +55,23 @@ const FullScreenMenu = forwardRef(({ onClose }, ref) => {
         .to(leftBgRef.current, { y: "-100%" })
         .to(rightBgRef.current, { y: "100%" }, "<");
     }
+  };
+
+  const handleMenuClick = (sectionId) => {
+    // Close the menu first
+    animateMenu("close");
+    onClose();
+
+    // Use setTimeout to ensure menu is closed before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 300); // Match this delay with your menu close animation duration
   };
 
   useImperativeHandle(ref, () => ({
@@ -107,14 +124,15 @@ const FullScreenMenu = forwardRef(({ onClose }, ref) => {
               />
             </div>
 
-            {menuItems.map((item) => (
+            {menuItems.map((item, index) => (
               <div
                 key={item.id}
+                onClick={() => handleMenuClick(item.id)}
                 className="group flex items-center justify-between w-[350px] cursor-pointer py-2 border-b border-gray-700 opacity-0"
               >
                 {/* Hide IDs on mobile & md */}
                 <span className="text-2xl text-gray-400 group-hover:text-white transition hidden md:inline">
-                  {item.id}
+                  {String(index + 1).padStart(2, '0')}
                 </span>
 
                 <span className="text-5xl font-extrabold group-hover:pl-4 transition-all">

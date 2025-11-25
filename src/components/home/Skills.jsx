@@ -46,7 +46,7 @@ const Skills = () => {
     }, []);
 
     return (
-        <section className="bg-[#121212] text-white px-6 sm:px-8 md:px-12 xl:px-16 2xl:px-28 w-full min-h-screen flex items-center justify-center py-10 md:py-16  z-10">
+        <section id="skills" className="bg-[#121212] text-white px-6 sm:px-8 md:px-12 xl:px-16 2xl:px-28 w-full min-h-screen flex items-center justify-center py-10 md:py-16  z-10">
             <div className="flex flex-col lg:flex-row gap-12 xl:gap-52 lg:items-center w-full">
                 {/* Left Content */}
                 <div className="flex-1 flex flex-col justify-center">
