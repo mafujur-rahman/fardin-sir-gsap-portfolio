@@ -16,7 +16,7 @@ export default function Home() {
       <Skills />
       <Quote />
       <Brand />
-      {/* <BrandCards /> */}
+      <BrandCards />
       <Achievemnt />
       <Footer />
     </div>

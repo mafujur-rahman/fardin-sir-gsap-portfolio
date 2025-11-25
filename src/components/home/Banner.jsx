@@ -67,7 +67,7 @@ const Banner = () => {
             </p>
 
             <h1
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-8xl font-bold leading-none mt-4 overflow-hidden"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mt-4 overflow-hidden"
             >
               Cyber Security <br /> Leader
             </h1>

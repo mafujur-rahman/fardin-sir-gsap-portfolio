@@ -46,14 +46,14 @@ const Skills = () => {
     }, []);
 
     return (
-        <section className="bg-[#121212] text-white px-6 sm:px-8 md:px-12 xl:px-40 w-full min-h-screen flex items-center justify-center py-10 md:py-16  z-10">
+        <section className="bg-[#121212] text-white px-6 sm:px-8 md:px-12 xl:px-16 2xl:px-28 w-full min-h-screen flex items-center justify-center py-10 md:py-16  z-10">
             <div className="flex flex-col lg:flex-row gap-12 xl:gap-52 lg:items-center w-full">
                 {/* Left Content */}
                 <div className="flex-1 flex flex-col justify-center">
                     <p className="text-gray-300 text-xl font-bold tracking-widest uppercase mb-4">
                         My Expertise
                     </p>
-                    <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-8xl font-bold leading-none mb-6">
+                    <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mb-6">
                         Expertise & <br />Capabilities
                     </h2>
                     <p className="text-lg md:text-2xl text-gray-300 mb-8 md:max-w-xl">

@@ -4,27 +4,28 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1f1f1f] text-white w-full pt-28 pb-10 font-sans">
-      {/* TOP CONTENT: BIG EMAIL + GRID */}
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-[#1f1f1f] text-white w-full pt-20 pb-10 font-sans">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-10">
+
         {/* BIG EMAIL */}
-        <h1 className="text-[5vw] leading-none font-semibold text-center break-words">
+        <h1 className="text-[7vw] sm:text-[6vw] md:text-[7vw] xl:text-[5vw] font-semibold text-center leading-tight break-words">
           root@fardeenahmed.info
         </h1>
 
-        {/* TOP BORDER FULL WIDTH BELOW EMAIL */}
-        <div className="w-full border-t border-[#2c2c2c] mt-10 mb-16"></div>
+        {/* TOP BORDER */}
+        <div className="w-full border-t border-[#2c2c2c] mt-5 md:mt-10 mb-5 lg:mb-14"></div>
 
-        {/* CONTENT GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* LOGO + TEXT BELOW */}
-          <div className="flex flex-col justify-start gap-4">
+        {/* GRID CONTENT */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+          {/* LOGO + TEXT */}
+          <div className="flex flex-col gap-4">
             <Image
-              src="/images/Fardeen-Ahmed-logo.png" 
-              alt="fardeen Logo"
+              src="/images/Fardeen-Ahmed-logo.png"
+              alt="fardeen logo"
               width={150}
               height={50}
-              className="object-contain"
+              className="object-contain w-[130px] sm:w-[150px]"
             />
             <p className="text-[#bfbfbf] leading-relaxed max-w-xs">
               We can create solutions that elevate growth and sales.
@@ -32,8 +33,8 @@ export default function Footer() {
           </div>
 
           {/* COMPANY LINKS */}
-          <div className="flex flex-col justify-start gap-4">
-            <h3 className="text-xl font-semibold mb-2">Company</h3>
+          <div className="flex flex-col gap-4">
+            <h3 className="text-xl font-semibold">Company</h3>
             <ul className="space-y-2 text-[#cdcdcd]">
               <li>Home</li>
               <li>About</li>
@@ -44,8 +45,8 @@ export default function Footer() {
           </div>
 
           {/* ADDRESS */}
-          <div className="flex flex-col justify-start gap-4">
-            <h3 className="text-xl font-semibold mb-2">Address</h3>
+          <div className="flex flex-col gap-4">
+            <h3 className="text-xl font-semibold">Address</h3>
             <p className="text-[#cdcdcd] leading-relaxed max-w-xs">
               Germany — 785 15h Street, Office 478 <br /> Berlin, De 81566
             </p>
@@ -54,26 +55,30 @@ export default function Footer() {
           </div>
 
           {/* CONTACT FORM */}
-          <div className="flex flex-col justify-start gap-4">
-            <h3 className="text-xl font-semibold mb-2">Contact</h3>
+          <div className="flex flex-col gap-4">
+            <h3 className="text-xl font-semibold">Contact</h3>
+
             <form className="flex flex-col gap-3">
               <input
                 type="text"
                 placeholder="Your Name"
                 className="border border-[#2c2c2c] px-5 py-3 bg-transparent text-white placeholder:text-[#bfbfbf] focus:outline-none"
               />
+
               <input
                 type="email"
                 placeholder="Your Email"
                 className="border border-[#2c2c2c] px-5 py-3 bg-transparent text-white placeholder:text-[#bfbfbf] focus:outline-none"
               />
+
               <textarea
                 placeholder="Your Message"
                 className="border border-[#2c2c2c] px-5 py-3 bg-transparent text-white placeholder:text-[#bfbfbf] focus:outline-none resize-none h-[84px]"
               />
+
               <button
                 type="submit"
-                className="px-6 py-3 border border-[#2c2c2c] hover:bg-white hover:text-black transition-all"
+                className="px-6 py-3 border border-[#2c2c2c] bg-white text-black hover:bg-transparent hover:text-white transition-all"
               >
                 Send
               </button>
@@ -82,14 +87,14 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* BOTTOM CONTENT: SOCIAL + COPYRIGHT (FULL WIDTH) */}
+      {/* SOCIAL + COPYRIGHT */}
       <div className="w-full border-t border-[#2c2c2c] mt-20">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 py-6 px-6 sm:px-8 md:px-12 xl:px-16">
-          <p className="text-[#a1a1a1]">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 py-6 px-6 sm:px-10 md:px-12 xl:px-16">
+          <p className="text-[#a1a1a1] text-center lg:text-left">
             All rights reserved — 2025 © Fardeen Ahmed
           </p>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <button className="px-6 py-2 rounded-full border border-[#2c2c2c] hover:bg-white hover:text-black transition-all">
               LINKEDIN
             </button>
