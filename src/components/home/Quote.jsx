@@ -50,7 +50,7 @@ const Quote = () => {
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-[80vh] overflow-hidden"
+            className="relative w-full h-[80vh] overflow-hidden py-20"
         >
             {/* Background Image */}
             <div
@@ -62,7 +62,7 @@ const Quote = () => {
             {/* White card overlaying next section */}
             <div
                 ref={cardRef}
-                className="absolute right-20 bottom-[-10%] bg-white p-6 max-w-sm  z-[998]"
+                className="bg-white p-6 w-full md:max-w-sm z-30 right-0 md:right-10 md:-bottom-5 bottom-0 absolute xl:right-20 xl:-bottom-10  sm:w-4/5 md:w-3/4 lg:w-1/2 mx-auto"
             >
                 <p className="text-lg text-gray-900 font-semibold">
                     Security isn’t just about building walls — it’s about awareness, curiosity, and the relentless pursuit of learning and innovation.
