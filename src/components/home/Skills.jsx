@@ -2,6 +2,7 @@
 import { LuArrowRight } from "react-icons/lu";
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { titleAnimation } from "../utils/title-anime";
 
 const Skills = () => {
     const services = [
@@ -15,6 +16,13 @@ const Skills = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const cardRefs = useRef([]);
     const iconRefs = useRef([]);
+    const titleRef = useRef(null);
+    const ParRef = useRef(null);
+
+    useEffect(() => {
+        titleAnimation(titleRef.current);
+        titleAnimation(ParRef.current);
+    }, []);
 
     const animateCard = (index) => {
         const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
@@ -50,10 +58,10 @@ const Skills = () => {
             <div className="flex flex-col lg:flex-row gap-12 xl:gap-52 lg:items-center w-full">
                 {/* Left Content */}
                 <div className="flex-1 flex flex-col justify-center">
-                    <p className="text-gray-300 text-xl font-bold tracking-widest uppercase mb-4">
+                    <p ref={ParRef} className="text-gray-300 text-xl font-bold tracking-widest uppercase mb-4">
                         My Expertise
                     </p>
-                    <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mb-6">
+                    <h2 ref={titleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mb-6">
                         Expertise & <br />Capabilities
                     </h2>
                     <p className="text-lg md:text-2xl text-gray-300 mb-8 md:max-w-xl">

@@ -10,6 +10,7 @@ import {
     FaMicrophone,
     FaHandsHelping,
 } from "react-icons/fa";
+import { titleAnimation } from "../utils/title-anime";
 
 /* ---------- AchievementCard (forwardRef) ---------- */
 const AchievementCard = React.forwardRef(function AchievementCard(
@@ -82,6 +83,13 @@ const Achievemnt = () => {
     ];
 
     const cardRefs = useRef([]);
+    const titleRef = useRef(null);
+    const ParRef = useRef(null);
+
+    useEffect(() => {
+        titleAnimation(titleRef.current);
+        titleAnimation(ParRef.current);
+    }, []);
 
     useEffect(() => {
         let ctx = gsap.context(() => {
@@ -118,11 +126,12 @@ const Achievemnt = () => {
     return (
         <div id="awards" className="min-h-screen bg-[#121212] text-white py-10 md:py-16 lg:py-20 px-6 sm:px-8">
             <div className="max-w-7xl mx-auto">
-                <p className="text-gray-300 text-xl font-bold tracking-widest uppercase mb-4">
+                <p ref={ParRef} className="text-gray-300 text-xl font-bold tracking-widest uppercase mb-4">
                     Achieved Award
                 </p>
 
                 <h1
+                ref={titleRef}
                     className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mb-16"
                 >
                     My achievement

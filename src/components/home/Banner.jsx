@@ -5,9 +5,15 @@ import { FaArrowDownLong } from "react-icons/fa6";
 import { MdWavingHand } from "react-icons/md";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { titleAnimation } from '../utils/title-anime';
 
 const Banner = () => {
   const helloRef = useRef(null);
+  const titleRef = useRef(null);
+
+  useEffect(() => {
+    titleAnimation(titleRef.current);
+  }, []);
 
   useEffect(() => {
     const wrapLetters = (element) => {
@@ -19,6 +25,8 @@ const Banner = () => {
         })
         .join("");
     };
+
+
 
     const helloText = helloRef.current;
 
@@ -67,6 +75,7 @@ const Banner = () => {
             </p>
 
             <h1
+            ref={titleRef}
               className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mt-4 overflow-hidden"
             >
               Cyber Security <br /> Leader
