@@ -65,18 +65,20 @@ const Banner = () => {
       <div className="flex flex-col lg:flex-row section-padding 2xl:max-w-[1800px] 2xl:mx-auto">
 
         {/* Left Image */}
-        <div className="w-full lg:w-1/2 relative h-[80vh] lg:h-screen" >
+        <div className="w-full lg:w-1/2 relative h-screen">
           <Image
-            src="/images/bg.png"
+            src="/images/banner-update.png"
             alt="Fardeen Ahmed"
             fill
-            className="object-cover object-top "
+            className="object-cover"
             priority
           />
         </div>
 
+
+
         {/* Right Text */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-between pt-[100px] lg:pt-[140px]">
+        <div className="w-full lg:w-1/2 flex flex-col justify-between pt-[100px] lg:pt-[140px] xl:pt-[70px]">
           <div className="flex flex-col justify-center flex-1">
 
             <div className='flex items-center justify-start overflow-hidden'>
@@ -99,14 +101,14 @@ const Banner = () => {
               ref={titleRef}
               className="text-[55px]  md:text-[90px] lg:text-[70px] xl:text-[105px] font-bold leading-none mt-4 overflow-hidden text-[#f5f7f5]"
             >
-              Cyber Security <br /> Leader
+              Tech <br /> Innovator
             </h1>
 
             {/* Founder text and line */}
-            <div ref={contentRef} className="lg:max-w-2xl xl:mx-0 flex flex-col xl:flex-row items-start xl:items-center gap-8 xl:gap-20 mt-6">
+            <div ref={contentRef} className="lg:max-w-4xl xl:mx-0 flex flex-col xl:flex-row items-start xl:items-center gap-8 xl:gap-20 mt-6">
               <div className="w-72 h-0.5 bg-[#f5f7f5] mx-auto xl:mx-0 hidden xl:block mb-[35px]" />
               <p className="text-[22px] text-start text-[#f5f7f5b3] font-light">
-                Founder of Ethical Den, Eduden & Hiyvr.ai
+                I’m Fardeen Ahmed, an ethical hacker, educator, and entrepreneur with over nine years of experience in cybersecurity, AI, and technology training. As the Founder of Ethical Den, I lead a team that builds modern digital solutions blending creativity, design, and strong security.
               </p>
             </div>
 
@@ -126,7 +128,7 @@ const Banner = () => {
             {/* Keep Scrolling */}
             <div className="relative mt-12 cursor-pointer hidden md:block ml-auto" onClick={handleScrollDown}>
               <div className="flex items-center justify-end gap-2">
-                <p className="text-[16px] tracking-widest text-white font-sans text-right">
+                <p className="text-[16px] tracking-widest text-white font-sans ">
                   Keep <br /> Scrolling
                 </p>
                 <div className="relative">

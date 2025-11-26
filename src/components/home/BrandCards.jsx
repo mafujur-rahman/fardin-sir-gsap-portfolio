@@ -14,6 +14,11 @@ export default function BrandCards() {
   const [heights, setHeights] = useState([]);
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const buttonIconRef = useRef(null);
+  const [hoveredButtonIndex, setHoveredButtonIndex] = useState(null);
+  const buttonRefs = useRef([]); // array of button SVG refs
+
+
+
 
   const items = [
     {
@@ -113,24 +118,14 @@ export default function BrandCards() {
   }, [windowWidth]);
 
   // btn
-  const handleButtonMouseEnter = () => {
-    setIsButtonHovered(true);
-    if (buttonIconRef.current) {
-      gsap.to(buttonIconRef.current, {
-        rotation: 0,
+  const handleButtonHover = (index, isHovered) => {
+    setHoveredButtonIndex(isHovered ? index : null);
+    const svg = buttonRefs.current[index];
+    if (svg) {
+      gsap.to(svg, {
+        rotation: isHovered ? 0 : -45,
         duration: 0.3,
-        ease: "power2.out"
-      });
-    }
-  };
-
-  const handleButtonMouseLeave = () => {
-    setIsButtonHovered(false);
-    if (buttonIconRef.current) {
-      gsap.to(buttonIconRef.current, {
-        rotation: -45,
-        duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     }
   };
@@ -180,22 +175,32 @@ export default function BrandCards() {
                   </div>
                 </div>
 
-                <div ref={containerRef} className="inline-flex items-center gap-6 mt-5 flex-nowrap">
-                  <span className="common-btn-size">View Brand</span>
+                {/* Button + Text */}
+                <div className="inline-flex items-center gap-6 mt-5 flex-nowrap">
+                  {/* Text */}
+                  <span
+                    className="common-btn-size text-[#f5f7f5] transition-colors duration-300 cursor-pointer"
+                    onMouseEnter={() => handleButtonHover(i, true)}
+                    onMouseLeave={() => handleButtonHover(i, false)}
+                  >
+                    View Brand
+                  </span>
+
+                  {/* Circle button with SVG */}
                   <button
-                    className="bg-transparent border-2 border-[#f5f7f5] rounded-full w-16 h-16 flex justify-center items-center text-3xl cursor-pointer transition-colors duration-300 hover:bg-white hover:text-black flex-shrink-0"
-                    onMouseEnter={handleButtonMouseEnter}
-                    onMouseLeave={handleButtonMouseLeave}
+                    className={`rounded-full w-16 h-16 flex justify-center items-center text-3xl flex-shrink-0 border-2 border-[#f5f7f5] transition-colors duration-300 ${hoveredButtonIndex === i ? "bg-white text-black" : "bg-transparent text-[#f5f7f5]"
+                      }`}
+                    onMouseEnter={() => handleButtonHover(i, true)}
+                    onMouseLeave={() => handleButtonHover(i, false)}
                   >
                     <svg
-                      ref={buttonIconRef}
+                      ref={(el) => (buttonRefs.current[i] = el)}
                       xmlns="http://www.w3.org/2000/svg"
                       width="36"
                       height="26"
                       viewBox="0 0 36 26"
                       fill="none"
                       className="transition-transform duration-300 ease-out"
-                      style={{ transform: `rotate(${isButtonHovered ? 0 : -45}deg)` }}
                     >
                       <path
                         d="M20.5078 0C20.5051 7.18628 27.3242 13.0013 35.754 13.0013M35.7432 12.999C27.3134 12.999 20.49 18.814 20.4873 26.0003M0.75 13.0039H33.3462"
@@ -206,6 +211,7 @@ export default function BrandCards() {
                     </svg>
                   </button>
                 </div>
+
               </div>
 
               {/* RIGHT IMAGE */}

@@ -8,41 +8,30 @@ const Brand = () => {
   const titleRef = useRef(null);
   const peraRef = useRef(null);
   const btnRef = useRef(null);
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
   const buttonIconRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    titleAnimation(titleRef.current);
-    titleAnimation(peraRef.current);
-    titleAnimation(btnRef.current);
+    // Animate titles separately, without affecting button container
+    if (titleRef.current) titleAnimation(titleRef.current);
+    if (peraRef.current) titleAnimation(peraRef.current);
   }, []);
 
-  const handleButtonMouseEnter = () => {
-    setIsButtonHovered(true);
+  // Rotate SVG on hover
+  useEffect(() => {
     if (buttonIconRef.current) {
       gsap.to(buttonIconRef.current, {
-        rotation: 0,
+        rotation: isHovered ? 0 : -45,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     }
-  };
-
-  const handleButtonMouseLeave = () => {
-    setIsButtonHovered(false);
-    if (buttonIconRef.current) {
-      gsap.to(buttonIconRef.current, {
-        rotation: -45,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    }
-  };
+  }, [isHovered]);
 
   return (
     <section
       id="brands"
-      className="bg-black text-[#f5f7f5]  pt-[100px] lg:pt-[140px] font-sans z-10"
+      className="bg-black text-[#f5f7f5] pt-[100px] lg:pt-[140px] font-sans z-10"
     >
       <div className="flex flex-col lg:flex-row justify-between items-start lg:gap-8 section-padding 2xl:max-w-[1500px] 2xl:mx-auto">
         <div>
@@ -55,18 +44,32 @@ const Brand = () => {
         </div>
 
         <div className="flex flex-col justify-center">
-          <p ref={peraRef} className="text-[18px] text-[#f5f7f5cc] leading-relaxed mb-10 max-w-2xl">
-            These are just a few Brands that I personally enjoy the most. I would be
-            glad to show you a bunch of other brands that I have done so far. Would
-            you like to have a look at them?
+          <p
+            ref={peraRef}
+            className="text-[18px] text-[#f5f7f5cc] leading-relaxed mb-10 max-w-2xl"
+          >
+            These are just a few Brands that I personally enjoy the most. I would
+            be glad to show you a bunch of other brands that I have done so far.
+            Would you like to have a look at them?
           </p>
 
-          <div ref={btnRef} className="inline-flex items-center gap-6 mt-5 flex-nowrap">
-            <span className="common-btn-size">All Brands</span>
+          {/* Button + Text */}
+          <div className="inline-flex items-center gap-4 mt-5">
+            {/* Text */}
+            <span
+              className="common-btn-size text-[#f5f7f5] transition-colors duration-300 cursor-pointer"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              All Brands
+            </span>
+
+            {/* Circle button with SVG */}
             <button
-              className="bg-transparent border-2 border-[#f5f7f5] rounded-full w-16 h-16 flex justify-center items-center text-3xl cursor-pointer transition-colors duration-300 hover:bg-white hover:text-black flex-shrink-0"
-              onMouseEnter={handleButtonMouseEnter}
-              onMouseLeave={handleButtonMouseLeave}
+              className={`rounded-full w-16 h-16 flex justify-center items-center text-3xl flex-shrink-0 border-2 border-[#f5f7f5] transition-colors duration-300 ${isHovered ? "bg-white text-black" : "bg-transparent text-[#f5f7f5]"
+                }`}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
               <svg
                 ref={buttonIconRef}
@@ -76,7 +79,9 @@ const Brand = () => {
                 viewBox="0 0 36 26"
                 fill="none"
                 className="transition-transform duration-300 ease-out"
-                style={{ transform: `rotate(${isButtonHovered ? 0 : -45}deg)` }}
+                style={{
+                  transform: `rotate(-45deg)`,
+                }}
               >
                 <path
                   d="M20.5078 0C20.5051 7.18628 27.3242 13.0013 35.754 13.0013M35.7432 12.999C27.3134 12.999 20.49 18.814 20.4873 26.0003M0.75 13.0039H33.3462"
@@ -87,6 +92,7 @@ const Brand = () => {
               </svg>
             </button>
           </div>
+
         </div>
       </div>
     </section>
