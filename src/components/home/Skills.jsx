@@ -93,18 +93,18 @@ const Skills = () => {
                 <div className="flex flex-col lg:flex-row gap-12 xl:gap-52 lg:items-start w-full">
                     {/* Left Content */}
                     <div className="flex-1 flex flex-col justify-center">
-                        <p ref={ParRef} className="text-[16px] font-bold tracking-widest uppercase mb-4">
+                        <p ref={ParRef} className="text-[16px] font-bold tracking-widest uppercase ">
                             My Expertise
                         </p>
-                        <h2 ref={titleRef} className="text-[60px] md:text-[90px] lg:text-[70px] xl:text-[90px] font-bold leading-none mb-6">
+                        <h2 ref={titleRef} className="text-[60px] md:text-[90px] lg:text-[70px] xl:text-[90px] font-bold leading-none mt-[22px]">
                             Expertise & <br />Capabilities
                         </h2>
-                        <p ref={ParRef2} className="text-[16px] text-[#f5f7f5cc] mb-8 ">
+                        <p ref={ParRef2} className="text-[16px] text-[#f5f7f5cc] mt-[35px]  2xl:mt-[55px]">
                             Combining cyber security intelligence, automation innovation, and software engineering
                             to build secure, scalable, and future-ready technology solutions.
                         </p>
 
-                        <div className="inline-flex items-center gap-4 mt-5">
+                        <div className="inline-flex items-center gap-4 mt-[35px] md:mt-[55px]">
                             {/* Text */}
                             <span
                                 className="common-btn-size text-[#f5f7f5] transition-colors duration-300 cursor-pointer"
