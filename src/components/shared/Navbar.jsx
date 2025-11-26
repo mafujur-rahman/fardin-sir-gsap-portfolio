@@ -80,8 +80,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full bg-[#121212] text-white py-6 overflow-hidden relative z-10">
-        <div className="px-6 sm:px-8 md:px-12 xl:px-16 flex items-center justify-between">
+      <nav className="w-full bg-black text-[#f5f7f5] py-6 overflow-hidden relative z-10">
+        <div className="px-[15px] md:px-[40px] lg:px-[58px] xl:px-[15px] 2xl:px-16  flex items-center justify-between">
           {/* LOGO */}
           <div className="w-[220px] h-auto flex items-center ">
             <Image
@@ -89,7 +89,7 @@ const Navbar = () => {
               alt="logo"
               width={800}
               height={800}
-              className="object-cover z-999"
+              className="object-cover"
             />
           </div>
 
@@ -104,12 +104,12 @@ const Navbar = () => {
             >
               <div
                 ref={marqueeRef}
-                className="whitespace-nowrap flex absolute top-1/2 -translate-y-1/2"
+                className="whitespace-nowrap flex text-[16px] absolute top-1/2 -translate-y-1/2"
               >
-                <span className="mr-8">GET IN TOUCH •</span>
-                <span className="mr-8">GET IN TOUCH •</span>
-                <span className="mr-8">GET IN TOUCH •</span>
-                <span className="mr-8">GET IN TOUCH •</span>
+                <span className="mr-8">GET IN TOUCH  •</span>
+                <span className="mr-8">GET IN TOUCH  •</span>
+                <span className="mr-8">GET IN TOUCH  •</span>
+                <span className="mr-8">GET IN TOUCH  •</span>
               </div>
             </button>
 

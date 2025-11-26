@@ -61,7 +61,7 @@ const Banner = () => {
   };
 
   return (
-    <section id='home' className="bg-black text-white h-auto lg:h-[90vh] overflow-hidden font-sans ">
+    <section id='home' className="bg-black text-white h-auto lg:-mt-10 2xl:mt-0 xl:h-[90vh] overflow-hidden font-sans ">
       <div className="flex flex-col lg:flex-row section-padding 2xl:max-w-[1800px] 2xl:mx-auto">
 
         {/* Left Image */}
@@ -91,7 +91,7 @@ const Banner = () => {
               </span>
               <p
                 ref={helloRef}
-                className="text-[22px]  md:text-[30px] lg:text-[26px] xl:text-[30px] text-[#f5f7f5] tracking-wider flex items-center justify-start overflow-hidden"
+                className="text-[22px]  md:text-[30px] lg:text-[26px] xl:text-[30px] text-[#f5f7f5] tracking-wider flex items-center justify-start overflow-hidden "
               >
                 Hello, I’m Fardeen Ahmed
               </p>
@@ -99,21 +99,21 @@ const Banner = () => {
 
             <h1
               ref={titleRef}
-              className="text-[55px]  md:text-[90px] lg:text-[70px] xl:text-[105px] font-bold leading-none mt-4 overflow-hidden text-[#f5f7f5]"
+              className="text-[55px]  md:text-[90px] lg:text-[70px] xl:text-[105px] font-bold leading-none overflow-hidden text-[#f5f7f5] mt-[22px] "
             >
               Tech <br /> Innovator
             </h1>
 
             {/* Founder text and line */}
-            <div ref={contentRef} className="lg:max-w-4xl xl:mx-0 flex flex-col xl:flex-row items-start xl:items-center gap-8 xl:gap-20 mt-6">
-              <div className="w-72 h-0.5 bg-[#f5f7f5] mx-auto xl:mx-0 hidden xl:block mb-[35px]" />
-              <p className="text-[22px] text-start text-[#f5f7f5b3] font-light">
+            <div ref={contentRef} className="md:max-w-xl lg:max-w-4xl xl:mx-0 flex flex-col xl:flex-row items-start xl:items-center gap-8 xl:gap-20 mt-[35px]  2xl:mt-[55px] ">
+              <div className="w-72 h-0.5 bg-[#f5f7f5] mx-auto xl:mx-0 hidden xl:block mb-[35px] xl:mb-[55px] " />
+              <p className="text-[22px] lg:text-[16px] 2xl:text-[22px] text-start text-[#f5f7f5b3] font-light">
                 I’m Fardeen Ahmed, an ethical hacker, educator, and entrepreneur with over nine years of experience in cybersecurity, AI, and technology training. As the Founder of Ethical Den, I lead a team that builds modern digital solutions blending creativity, design, and strong security.
               </p>
             </div>
 
             {/* Social Icons */}
-            <div ref={socialRef} className="flex flex-col w-fit md:flex-row md:flex-wrap justify-start lg:justify-start gap-3 mt-10">
+            <div ref={socialRef} className="flex flex-col w-fit md:flex-row md:flex-wrap justify-start lg:justify-start gap-3 md:gap-2 lg:gap-3 mt-[35px] 2xl:mt-[55px] ">
               {['LINKEDIN', 'GITHUB', 'INSTAGRAM'].map((label) => (
                 <Link
                   key={label}
@@ -126,7 +126,7 @@ const Banner = () => {
             </div>
 
             {/* Keep Scrolling */}
-            <div className="relative mt-12 cursor-pointer hidden md:block ml-auto" onClick={handleScrollDown}>
+            <div className="relative lg:mt-6 xl:mt-2 2xl:mt-12 md:-mt-30 md:pb-30 lg:pb-0 xl:pb-10  cursor-pointer hidden md:block ml-auto" onClick={handleScrollDown}>
               <div className="flex items-center justify-end gap-2">
                 <p className="text-[16px] tracking-widest text-white font-sans ">
                   Keep <br /> Scrolling
