@@ -20,32 +20,32 @@ export default function BrandCards() {
       title: "Ethicalden",
       desc: "A cybersecurity-driven tech collective empowering the next generation of ethical hackers, builders and innovators.",
       role: "Founder & CEO",
-      category: "Website",
-      tag: "Business, Elegant",
+      category: "Software Company",
+      tag: "Cybersecurity, Tech , EdTech ",
       img: "/images/company/Ethicalden.png",
     },
     {
       title: "Eduden",
       desc: "A next-gen learning platform helping students master ethical hacking & emerging technologies through real-world labs.",
       role: "Founder & CEO",
-      category: "Website",
-      tag: "Business, Elegant",
+      category: "EdTech Platform",
+      tag: "EdTech, Cybersecurity",
       img: "/images/company/Eduden.jpg",
     },
     {
       title: "Hivyr",
       desc: "AI-powered workflow intelligence tools designed to automate operations and scale businesses efficiently.",
       role: "Founder & CEO",
-      category: "Website",
-      tag: "Business, Elegant",
+      category: "SaaS / AI Tools",
+      tag: "AI, Productivity",
       img: "/images/company/hivyr.png",
     },
     {
       title: "Corvtron",
       desc: "Leading innovative robotics solutions to automate tasks, enhance efficiency, and transform industries with cutting-edge technology.",
       role: "Founder & CEO",
-      category: "Website",
-      tag: "Business, Elegant",
+      category: "Robotics Company",
+      tag: "Robotics, Tech",
       img: "/images/company/corvtron-2.png",
     },
   ];
@@ -82,7 +82,7 @@ export default function BrandCards() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: card,
-            start: "top 90%",
+            start: "top 40%",
             toggleActions: "play none none none",
           },
         });
@@ -127,7 +127,7 @@ export default function BrandCards() {
           <div
             key={i}
             className={`w-full border-t border-[#828282] ${i === items.length - 1 ? "border-b border-[#828282]" : ""} bg-black relative z-10`}
-              
+
           >
             <div
               ref={(el) => (cardsRef.current[i] = el)}

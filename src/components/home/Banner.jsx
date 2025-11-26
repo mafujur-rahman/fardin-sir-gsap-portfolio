@@ -61,7 +61,7 @@ const Banner = () => {
   };
 
   return (
-    <section id='home' className="bg-black text-white h-auto lg:-mt-10 2xl:mt-0 xl:h-[90vh] overflow-hidden font-sans ">
+    <section id='home' className="bg-black text-white h-auto  overflow-hidden ">
       <div className="flex flex-col lg:flex-row section-padding 2xl:max-w-[1800px] 2xl:mx-auto">
 
         {/* Left Image */}
@@ -78,7 +78,7 @@ const Banner = () => {
 
 
         {/* Right Text */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-between pt-[100px] lg:pt-[140px] xl:pt-[70px]">
+        <div className="w-full lg:w-1/2 flex flex-col justify-between pt-[100px] lg:pt-[140px] xl:pt-[140px]">
           <div className="flex flex-col justify-center flex-1">
 
             <div className='flex items-center justify-start overflow-hidden'>
@@ -126,9 +126,9 @@ const Banner = () => {
             </div>
 
             {/* Keep Scrolling */}
-            <div className="relative lg:mt-6 xl:mt-2 2xl:mt-12 md:-mt-30 md:pb-30 lg:pb-0 xl:pb-10  cursor-pointer hidden md:block ml-auto" onClick={handleScrollDown}>
+            <div className="relative lg:mt-6 xl:mt-2 2xl:mt-12 md:-mt-30 md:pb-30 lg:pb-0  cursor-pointer hidden md:block ml-auto" onClick={handleScrollDown}>
               <div className="flex items-center justify-end gap-2">
-                <p className="text-[16px] tracking-widest text-white font-sans ">
+                <p className="text-[16px] tracking-widest text-white ">
                   Keep <br /> Scrolling
                 </p>
                 <div className="relative">

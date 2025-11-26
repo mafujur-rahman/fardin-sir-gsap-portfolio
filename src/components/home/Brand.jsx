@@ -31,7 +31,7 @@ const Brand = () => {
   return (
     <section
       id="brands"
-      className="bg-black text-[#f5f7f5] pt-[100px] lg:pt-[140px] font-sans z-10"
+      className="bg-black text-[#f5f7f5] pt-[100px] lg:pt-[140px]  z-10"
     >
       <div className="flex flex-col lg:flex-row justify-between items-start lg:gap-20 xl:gap-8 section-padding 2xl:max-w-[1500px] 2xl:mx-auto">
         {/* TITLE */}
@@ -48,7 +48,7 @@ const Brand = () => {
         <div className="flex flex-col justify-start lg:items-start">
           <p
             ref={peraRef}
-            className="text-[18px] text-[#f5f7f5cc] leading-relaxed my-[20px] lg:my-0 max-w-2xl lg:max-w-sm text-left"
+            className="text-[18px] text-[#f5f7f5cc] leading-relaxed my-[20px] lg:my-0 max-w-2xl lg:max-w-sm xl:max-w-2xl text-left"
           >
             These are just a few Brands that I personally enjoy the most. I would
             be glad to show you a bunch of other brands that I have done so far.

@@ -6,34 +6,55 @@ import FullScreenMenu from "./ScreenMenu";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScroll, setLastScroll] = useState(0);
 
   const menuRef = useRef(null);
-  const fullScreenMenuRef = useRef(null); // Ref for the FullScreenMenu
+  const fullScreenMenuRef = useRef(null);
 
-  // Refs for the burger icon lines
   const line1Ref = useRef(null);
   const line2Ref = useRef(null);
 
-  // Existing Marquee and Button refs
   const marqueeRef = useRef(null);
   const btnRef = useRef(null);
 
+  // --- Scroll Hide/Show Logic ---
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll < 0) return;
+
+      if (currentScroll > lastScroll && currentScroll > 50) {
+        // scrolling down
+        setShowNavbar(false);
+      } else {
+        // scrolling up
+        setShowNavbar(true);
+      }
+      setLastScroll(currentScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScroll]);
+
   useEffect(() => {
     // --- Existing Marquee and Hover Logic ---
-    const marqueeWidth = marqueeRef.current.scrollWidth / 2;
+    const marqueeWidth = marqueeRef.current?.scrollWidth / 2;
     const marqueeTl = gsap.timeline({ repeat: -1, defaults: { ease: "linear" } });
-    marqueeTl.to(marqueeRef.current, { x: -marqueeWidth, duration: 4 });
+    if (marqueeRef.current) {
+      marqueeTl.to(marqueeRef.current, { x: -marqueeWidth, duration: 4 });
+    }
 
-    // Ensure refs are available before adding listeners
     if (btnRef.current) {
       btnRef.current.addEventListener("mouseenter", () => marqueeTl.pause());
       btnRef.current.addEventListener("mouseleave", () => marqueeTl.resume());
     }
 
-    // --- Existing Menu Hover Animation Logic ---
     const distance = 40;
     const hoverMenu = () => {
-      if (isMenuOpen) return; // Don't run hover animation if menu is open
+      if (isMenuOpen) return;
 
       const tl = gsap.timeline();
       tl.to(line1Ref.current, { x: distance, duration: 0.35, ease: "power2.inOut" })
@@ -54,7 +75,6 @@ const Navbar = () => {
     }
 
     return () => {
-      // Cleanup listeners
       if (btnRef.current) {
         btnRef.current.removeEventListener("mouseenter", () => marqueeTl.pause());
         btnRef.current.removeEventListener("mouseleave", () => marqueeTl.resume());
@@ -69,10 +89,8 @@ const Navbar = () => {
     if (!fullScreenMenuRef.current) return;
 
     if (isMenuOpen) {
-      // Closing the menu
       fullScreenMenuRef.current.close();
     } else {
-      // Opening the menu
       fullScreenMenuRef.current.open();
     }
     setIsMenuOpen(!isMenuOpen);
@@ -80,10 +98,16 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full bg-black text-[#f5f7f5] py-6 overflow-hidden relative z-10">
-        <div className="px-[15px] md:px-[40px] lg:px-[58px] xl:px-[15px] 2xl:px-16  flex items-center justify-between">
+      <nav
+        className={`w-full text-[#f5f7f5] py-6 overflow-hidden fixed top-0 left-0 z-50 transition-all duration-300 ${
+          showNavbar
+            ? "backdrop-blur-md bg-black/70"
+            : "-translate-y-full"
+        }`}
+      >
+        <div className="px-[15px] md:px-[40px] lg:px-[58px] xl:px-[15px] 2xl:px-16 flex items-center justify-between">
           {/* LOGO */}
-          <div className="w-[220px] h-auto flex items-center ">
+          <div className="w-[220px] h-auto flex items-center">
             <Image
               src="/images/logo-update.png"
               alt="logo"
@@ -119,8 +143,14 @@ const Navbar = () => {
               onClick={toggleMenu}
               className="flex flex-col cursor-pointer space-y-[6px] overflow-hidden w-8 h-4 relative"
             >
-              <span ref={line1Ref} className="block w-8 h-[2px] bg-white absolute top-0"></span>
-              <span ref={line2Ref} className="block w-8 h-[2px] bg-white absolute bottom-0"></span>
+              <span
+                ref={line1Ref}
+                className="block w-8 h-[2px] bg-white absolute top-0"
+              ></span>
+              <span
+                ref={line2Ref}
+                className="block w-8 h-[2px] bg-white absolute bottom-0"
+              ></span>
             </div>
           </div>
         </div>

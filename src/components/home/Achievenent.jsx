@@ -46,8 +46,14 @@ const AchievementCard = React.forwardRef(function AchievementCard(
 
             {/* COLUMN 3 — ICON */}
             <div className="flex justify-start md:justify-start lg:justify-end items-center mt-4 md:mt-0">
-                {Icon && <Icon className="w-20 h-20 lg:w-28 lg:h-28 opacity-80" />}
+                {Icon && (
+                    <Icon
+                        className="w-20 h-20 lg:w-24 lg:h-24 text-[#f5f7f5b3]"
+                        style={{ color: "#f5f7f5b3" }}
+                    />
+                )}
             </div>
+
         </div>
     );
 });

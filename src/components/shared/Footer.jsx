@@ -25,7 +25,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="bg-black text-[#f5f7f5] w-full pt-[100px] lg:pt-[140px] font-sans">
+    <footer id="contact" className="bg-black text-[#f5f7f5] w-full pt-[100px] lg:pt-[140px] ">
       <div className="section-padding 2xl:max-w-[1500px] 2xl:mx-auto">
 
         {/* BIG EMAIL */}
@@ -37,7 +37,7 @@ export default function Footer() {
         <div className="w-full border-t border-[#828282] mt-[40px] mb-[75px] "></div>
 
         {/* GRID CONTENT */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-y-12 lg:gap-x-16 xl:gap-x-40">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-y-12 md:gap-x-4 lg:gap-x-16 xl:gap-x-40">
           {/* LOGO + TEXT */}
           <div className="flex flex-col h-full w-full justify-start">
             <div className="w-[220px] h-auto flex items-center ">
@@ -56,8 +56,8 @@ export default function Footer() {
 
           {/* COMPANY LINKS */}
           <div className="flex flex-col h-full w-full justify-start">
-            <h3 className="text-xl font-semibold">Company</h3>
-            <ul className="space-y-2 mt-4 text-[#cdcdcd]">
+            <h3 className="text-xl md:text-[26px] font-semibold">Company</h3>
+            <ul className="space-y-2 mt-4 text-[#f5f7f5]">
               {companyLinks.map((link) => (
                 <li key={link.id}>
                   <button
@@ -73,7 +73,7 @@ export default function Footer() {
 
           {/* ADDRESS */}
           <div className="flex flex-col h-full w-full justify-start">
-            <h3 className="text-xl font-semibold">Address</h3>
+            <h3 className="text-xl md:text-[26px] font-semibold">Address</h3>
             <p className="text-[#cdcdcd] leading-relaxed mt-4">
               Germany — 785 15h Street, Office 478 <br /> Berlin, De 81566
             </p>
@@ -83,7 +83,7 @@ export default function Footer() {
 
           {/* CONTACT FORM */}
           <div className="flex flex-col h-full w-full justify-start">
-            <h3 className="text-xl font-semibold">Contact</h3>
+            <h3 className="text-xl md:text-[26px] font-semibold">Contact</h3>
             <form className="flex flex-col gap-3 mt-4">
               <input
                 type="text"
