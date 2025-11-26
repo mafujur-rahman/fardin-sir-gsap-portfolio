@@ -12,10 +12,13 @@ const Quote = () => {
     const cardRef = useRef(null);
 
     useEffect(() => {
+        const container = containerRef.current;
         const image = imageRef.current;
         const card = cardRef.current;
 
-        // Background parallax
+        // ===========================================
+        // IMAGE PARALLAX → ALWAYS ACTIVE (all devices)
+        // ===========================================
         gsap.fromTo(
             image,
             { y: "-15%" },
@@ -23,29 +26,44 @@ const Quote = () => {
                 y: "0%",
                 ease: "none",
                 scrollTrigger: {
-                    trigger: containerRef.current,
+                    trigger: container,
                     start: "top bottom",
-                    end: "bottom top",
+                    end: "bottom bottom", // prevents overshoot upward
                     scrub: 1,
                 },
             }
         );
 
-        // Card parallax
-        gsap.fromTo(
-            card,
-            { y: 0 },
-            {
-                y: "-15%",
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1,
-                },
+        // ============================================
+        // CARD PARALLAX → ONLY ON LARGE DEVICES (≥1024)
+        // ============================================
+        ScrollTrigger.matchMedia({
+            "(min-width: 1024px)": function () {
+                gsap.fromTo(
+                    card,
+                    { y: 0 },
+                    {
+                        y: "-15%",
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: container,
+                            start: "top bottom",
+                            end: "bottom bottom", // stops exactly at section bottom
+                            scrub: 1,
+                        },
+                    }
+                );
+            },
+
+            // Mobile + Tablet → CARD HAS NO ANIMATION
+            "(max-width: 1023px)": function () {
+                gsap.set(card, { y: 0 });
             }
-        );
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach((t) => t.kill());
+        };
     }, []);
 
     return (
@@ -60,12 +78,14 @@ const Quote = () => {
                 style={{ backgroundImage: "url('/images/award-bg.jpg')" }}
             ></div>
 
-            {/* White card overlaying next section */}
+            {/* White card overlay */}
             <div
                 ref={cardRef}
-                className="bg-white p-6 w-full md:max-w-2xl lg:max-w-3xl xl:max-w-4xl z-30 right-0 md:right-10 md:-bottom-5 bottom-0 absolute xl:right-20 xl:-bottom-10 mx-auto flex items-center gap-6 md:gap-8 lg:gap-10 "
+                className="bg-white p-6 w-full md:max-w-2xl lg:max-w-3xl xl:max-w-4xl
+                z-30 right-0 md:right-10 md:-bottom-5 bottom-0 absolute 
+                xl:right-20 xl:-bottom-10 mx-auto flex items-center gap-6 md:gap-8 lg:gap-10"
             >
-                {/* Trophy Image */}
+                {/* Icon */}
                 <div className="flex-shrink-0 flex items-center">
                     <Image
                         src="/images/awerd-icon.png"
@@ -76,18 +96,16 @@ const Quote = () => {
                     />
                 </div>
 
-                {/* Vertical Divider */}
                 <div className="w-px bg-[#121212] h-20 md:h-24 lg:h-28 xl:h-32"></div>
 
-                {/* Text Content */}
+                {/* Text */}
                 <div className="flex items-center flex-1">
-                    <p className="text-[16px] lg:text-[32px]  text-[#121212] font-semibold leading-tight">
+                    <p className="text-[16px] lg:text-[32px] text-[#121212] font-semibold leading-tight">
                         Security isn’t just about building walls — it’s about awareness, curiosity,
                         and the relentless pursuit of learning and innovation.
                     </p>
                 </div>
             </div>
-
         </div>
     );
 };
