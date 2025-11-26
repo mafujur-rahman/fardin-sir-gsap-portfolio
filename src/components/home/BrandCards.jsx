@@ -126,7 +126,7 @@ export default function BrandCards() {
         {items.map((item, i) => (
           <div
             key={i}
-            className={`w-full border-t border-[#828282] ${i === items.length - 1 ? "border-b border-[#828282]" : ""} bg-black relative z-10`}
+            className={`w-full border-t border-[#828282]/40 ${i === items.length - 1 ? "border-b border-[#828282]/40" : ""} bg-black relative z-10`}
 
           >
             <div

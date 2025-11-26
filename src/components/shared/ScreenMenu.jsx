@@ -182,7 +182,7 @@ const FullScreenMenu = forwardRef(({ onClose }, ref) => {
           {/* Image constrained to container width */}
           <div
             ref={(el) => (rightElementsRef.current[1] = el)}
-            className="relative w-full max-w-full h-[400px] md:h-[550px]  xl:h-[600px] 2xl:h-[800px] opacity-0 flex items-end"
+            className="relative w-full max-w-full h-[400px] md:h-[550px]  xl:h-[600px] 2xl:h-[900px] opacity-0 flex items-end"
           >
             <Image
               src="/images/menu-img.png"

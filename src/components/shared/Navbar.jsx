@@ -26,10 +26,8 @@ const Navbar = () => {
       if (currentScroll < 0) return;
 
       if (currentScroll > lastScroll && currentScroll > 50) {
-        // scrolling down
         setShowNavbar(false);
       } else {
-        // scrolling up
         setShowNavbar(true);
       }
       setLastScroll(currentScroll);
@@ -40,9 +38,10 @@ const Navbar = () => {
   }, [lastScroll]);
 
   useEffect(() => {
-    // --- Existing Marquee and Hover Logic ---
+    // --- Marquee Logic ---
     const marqueeWidth = marqueeRef.current?.scrollWidth / 2;
     const marqueeTl = gsap.timeline({ repeat: -1, defaults: { ease: "linear" } });
+
     if (marqueeRef.current) {
       marqueeTl.to(marqueeRef.current, { x: -marqueeWidth, duration: 4 });
     }
@@ -100,63 +99,57 @@ const Navbar = () => {
     <>
       <nav
         className={`w-full text-[#f5f7f5] py-6 overflow-hidden fixed top-0 left-0 z-50 transition-all duration-300 ${
-          showNavbar
-            ? "backdrop-blur-md bg-black/70"
-            : "-translate-y-full"
+          showNavbar ? "backdrop-blur-md bg-black/70" : "-translate-y-full"
         }`}
       >
-        <div className="px-[15px] md:px-[40px] lg:px-[58px] xl:px-[15px] 2xl:px-16 flex items-center justify-between">
-          {/* LOGO */}
-          <div className="w-[220px] h-auto flex items-center">
+        <div className="px-[15px] md:px-[40px] lg:px-[58px] xl:px-[15px] 2xl:px-16 flex items-center justify-between relative">
+
+          {/* LEFT – MENU */}
+          <div
+            ref={menuRef}
+            onClick={toggleMenu}
+            className="flex flex-col cursor-pointer space-y-[6px] overflow-hidden w-8 h-4 relative"
+          >
+            <span
+              ref={line1Ref}
+              className="block w-8 h-[2px] bg-white absolute top-0"
+            ></span>
+            <span
+              ref={line2Ref}
+              className="block w-8 h-[2px] bg-white absolute bottom-0"
+            ></span>
+          </div>
+
+          {/* CENTER – LOGO */}
+          <div className="absolute left-1/2 -translate-x-1/2 w-[220px] h-[55px] flex items-center">
             <Image
               src="/images/logo-update.png"
               alt="logo"
-              width={800}
-              height={800}
-              className="object-cover"
+              width={220}
+              height={55}
+              priority
+              className="h-full w-auto object-contain"
             />
           </div>
 
-          <div className="flex-1"></div>
-
-          {/* RIGHT SIDE */}
-          <div className="flex items-center gap-8">
-            {/* BUTTON WITH MARQUEE - HIDDEN ON MOBILE */}
-            <button
-              ref={btnRef}
-              className="relative w-[180px] overflow-hidden border-y border-white py-6 hidden sm:block"
-            >
-              <div
-                ref={marqueeRef}
-                className="whitespace-nowrap flex text-[16px] absolute top-1/2 -translate-y-1/2"
-              >
-                <span className="mr-8">GET IN TOUCH  •</span>
-                <span className="mr-8">GET IN TOUCH  •</span>
-                <span className="mr-8">GET IN TOUCH  •</span>
-                <span className="mr-8">GET IN TOUCH  •</span>
-              </div>
-            </button>
-
-            {/* MENU ICON */}
+          {/* RIGHT – GET IN TOUCH BUTTON */}
+          <button
+            ref={btnRef}
+            className="relative w-[180px] overflow-hidden border-y border-white py-6 hidden sm:block"
+          >
             <div
-              ref={menuRef}
-              onClick={toggleMenu}
-              className="flex flex-col cursor-pointer space-y-[6px] overflow-hidden w-8 h-4 relative"
+              ref={marqueeRef}
+              className="whitespace-nowrap flex text-[16px] absolute top-1/2 -translate-y-1/2"
             >
-              <span
-                ref={line1Ref}
-                className="block w-8 h-[2px] bg-white absolute top-0"
-              ></span>
-              <span
-                ref={line2Ref}
-                className="block w-8 h-[2px] bg-white absolute bottom-0"
-              ></span>
+              <span className="mr-8">GET IN TOUCH  •</span>
+              <span className="mr-8">GET IN TOUCH  •</span>
+              <span className="mr-8">GET IN TOUCH  •</span>
+              <span className="mr-8">GET IN TOUCH  •</span>
             </div>
-          </div>
+          </button>
         </div>
       </nav>
 
-      {/* Full Screen Menu Component */}
       <FullScreenMenu ref={fullScreenMenuRef} onClose={() => setIsMenuOpen(false)} />
     </>
   );
