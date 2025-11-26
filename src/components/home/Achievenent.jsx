@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 import { titleAnimation } from "../utils/title-anime";
 
-/* ---------- AchievementCard (forwardRef) ---------- */
 const AchievementCard = React.forwardRef(function AchievementCard(
     { year, category, description, Icon },
     ref
@@ -20,31 +19,42 @@ const AchievementCard = React.forwardRef(function AchievementCard(
     return (
         <div
             ref={ref}
-            className="border-2 border-[#1f1f1f] p-6 flex flex-col md:flex-row justify-between md:items-center gap-6 md:gap-10 bg-[#121212] opacity-0"
+            className="
+                w-full bg-black border border-[#828282] px-[30px] py-[40px]
+                grid 
+                grid-cols-1 
+                md:grid-cols-1
+                lg:grid-cols-[100px_minmax(150px,1fr)_80px]
+                xl:grid-cols-[110px_minmax(300px,1fr)_110px]
+                items-start gap-[20px] opacity-0
+            "
         >
-            {/* ICON — MOBILE TOP */}
-            <div className="flex-shrink-0 mx-auto md:hidden text-gray-300">
-                {Icon && <Icon className="w-20 h-20 sm:w-24 sm:h-24" />}
+            {/* COLUMN 1 — YEAR */}
+            <div className="text-left">
+                <p className="text-[#f5f7f5b3] text-[22px] font-light">
+                    {year}
+                </p>
             </div>
 
-            {/* TEXT */}
-            <div className="flex-1 text-left">
-                <p className="text-gray-300 text-xl md:text-2xl mb-2">{year}</p>
-                <h3 className="text-gray-300 text-2xl font-semibold mb-2">
-                    {category}
-                </h3>
-                <p className="text-white text-base md:text-lg leading-snug">
+            {/* COLUMN 2 — CATEGORY + DESCRIPTION */}
+            <div className="flex flex-col text-left gap-1">
+                <p className="text-[#f5f7f5b3] text-[22px]">{category}</p>
+                <p className="text-[#f5f7f5] text-[22px] font-semibold">
                     {description}
                 </p>
             </div>
 
-            {/* ICON — DESKTOP RIGHT */}
-            <div className="hidden md:block flex-shrink-0 text-gray-300">
-                {Icon && <Icon className="w-20 h-20 lg:w-24 lg:h-24" />}
+            {/* COLUMN 3 — ICON */}
+            <div className="flex justify-start md:justify-start lg:justify-end items-center mt-4 md:mt-0">
+                {Icon && <Icon className="w-20 h-20 lg:w-28 lg:h-28 opacity-80" />}
             </div>
         </div>
     );
 });
+
+
+
+
 
 // set a displayName for better devtools and to satisfy linters (react/display-name)
 AchievementCard.displayName = "AchievementCard";
@@ -124,15 +134,15 @@ const Achievemnt = () => {
 
 
     return (
-        <div id="awards" className="min-h-screen bg-[#121212] text-white py-10 md:py-16 lg:py-20 px-6 sm:px-8">
-            <div className="max-w-7xl mx-auto">
-                <p ref={ParRef} className="text-gray-300 text-xl font-bold tracking-widest uppercase mb-4">
+        <div id="awards" className="min-h-screen bg-black text-[#f5f7f5] pt-[100px] lg:pt-[140px]">
+            <div className="section-padding 2xl:max-w-[1350px] 2xl:mx-auto">
+                <p ref={ParRef} className="text-[16px] font-bold tracking-widest uppercase mb-4">
                     Achieved Award
                 </p>
 
                 <h1
-                ref={titleRef}
-                    className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mb-16"
+                    ref={titleRef}
+                    className="text-[45px]  md:text-[72px] xl:text-[90px] font-bold leading-none mb-[50px] xl:mb-[70px]"
                 >
                     My achievement
                     <br />

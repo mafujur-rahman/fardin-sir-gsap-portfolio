@@ -12,6 +12,8 @@ export default function BrandCards() {
   const leftRefs = useRef([]);
   const [windowWidth, setWindowWidth] = useState(0);
   const [heights, setHeights] = useState([]);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const buttonIconRef = useRef(null);
 
   const items = [
     {
@@ -110,86 +112,135 @@ export default function BrandCards() {
     return () => ctx.revert();
   }, [windowWidth]);
 
+  // btn
+  const handleButtonMouseEnter = () => {
+    setIsButtonHovered(true);
+    if (buttonIconRef.current) {
+      gsap.to(buttonIconRef.current, {
+        rotation: 0,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    }
+  };
+
+  const handleButtonMouseLeave = () => {
+    setIsButtonHovered(false);
+    if (buttonIconRef.current) {
+      gsap.to(buttonIconRef.current, {
+        rotation: -45,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    }
+  };
+
   return (
     <section
       ref={containerRef}
-      className="bg-[#121212] text-white w-full min-h-screen py-16 lg:py-20 space-y-10 xl:space-y-20"
+      className="bg-black text-[#f5f7f5] w-full min-h-screen pt-[50px] xl:pt-[100px]"
     >
-      {items.map((item, i) => (
-        <div
-          key={i}
-          ref={(el) => (cardsRef.current[i] = el)}
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-14 pt-5 md:pt-8 xl:pt-24 px-6 sm:px-8 md:px-12 xl:px-16 bg-[#121212] border-t border-[#2c2c2c] ${i === items.length - 1 ? "border-b border-[#2c2c2c]" : ""
-            } items-start`}
-        >
-          {/* LEFT SIDE */}
+      <div className="w-full">
+        {items.map((item, i) => (
           <div
-            ref={(el) => (leftRefs.current[i] = el)}
-            className="flex flex-col justify-between space-y-6 w-full order-1"
+            key={i}
+            className={`w-full border-t border-[#828282] z-30 ${i === items.length - 1 ? "border-b border-[#828282]" : ""
+              }`}
           >
-            <div className="space-y-4 w-max">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none">
-                {item.title}
-              </h1>
-              <p className="text-[#b4b4b4] text-xl leading-relaxed max-w-[280px] md:max-w-xl lg:max-w-md xl:max-w-lg">
-                {item.desc}
-              </p>
-            </div>
+            <div
+              ref={(el) => (cardsRef.current[i] = el)}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-14 py-[50px] xl:py-[100px] section-padding 2xl:max-w-[1500px] 2xl:mx-auto bg-black items-start"
+            >
+              {/* LEFT SIDE */}
+              <div
+                ref={(el) => (leftRefs.current[i] = el)}
+                className="flex flex-col justify-between w-full order-1"
+              >
+                <div className="space-y-4 w-max">
+                  <h1 className="text-[45px] md:text-[60px] font-bold leading-none mb-[40px] md:mb-[50px] lg:mb-[40px]">
+                    {item.title}
+                  </h1>
+                  <p className=" text-[18px]  text-[#f5f7f5cc] leading-relaxed max-w-[280px] md:max-w-xl lg:max-w-md xl:max-w-lg mb-[40px] md:mb-[50px] lg:mb-[40px]">
+                    {item.desc}
+                  </p>
+                </div>
 
-            <div className="flex flex-col divide-y divide-[#2c2c2c] border-t border-[#2c2c2c] w-full lg:max-w-lg">
-              <div className="flex items-center gap-4 py-4">
-                <span className="font-semibold w-28">Role:</span>
-                <span>{item.role}</span>
-              </div>
-              <div className="flex items-center gap-4 py-4">
-                <span className="font-semibold w-28">Category:</span>
-                <span>{item.category}</span>
-              </div>
-              <div className="flex items-center border-b border-[#2c2c2c] gap-4 py-4">
-                <span className="font-semibold w-28">Tag:</span>
-                <span>{item.tag}</span>
-              </div>
-            </div>
+                <div className="flex flex-col divide-y divide-[#2c2c2c] border-t border-[#2c2c2c] w-full lg:max-w-lg">
+                  <div className="flex items-center gap-4 py-[7px]">
+                    <span className="font-semibold w-28 text-[16px] text-[#f5f7f5cc]">Role:</span>
+                    <span className="text-[16px] text-[#f5f7f5cc]">{item.role}</span>
+                  </div>
+                  <div className="flex items-center gap-4 py-[7px]">
+                    <span className="font-semibold text-[16px] text-[#f5f7f5cc] w-28">Category:</span>
+                    <span className="text-[16px] text-[#f5f7f5cc]">{item.category}</span>
+                  </div>
+                  <div className="flex items-center border-b border-[#2c2c2c] gap-4 py-[7px]">
+                    <span className="font-semibold w-28 text-[16px] text-[#f5f7f5cc]">Tag:</span>
+                    <span className="text-[16px] text-[#f5f7f5cc]">{item.tag}</span>
+                  </div>
+                </div>
 
-            <div className="flex items-center mt-6">
-              <span className="text-xl md:text-2xl mr-5">View Brand</span>
-              <button className="bg-transparent border-2 border-white rounded-full w-16 h-16 flex justify-center items-center text-3xl cursor-pointer transition-colors duration-300 hover:bg-white hover:text-black">
-                &rarr;
-              </button>
+                <div ref={containerRef} className="inline-flex items-center gap-6 mt-5 flex-nowrap">
+                  <span className="common-btn-size">View Brand</span>
+                  <button
+                    className="bg-transparent border-2 border-[#f5f7f5] rounded-full w-16 h-16 flex justify-center items-center text-3xl cursor-pointer transition-colors duration-300 hover:bg-white hover:text-black flex-shrink-0"
+                    onMouseEnter={handleButtonMouseEnter}
+                    onMouseLeave={handleButtonMouseLeave}
+                  >
+                    <svg
+                      ref={buttonIconRef}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="36"
+                      height="26"
+                      viewBox="0 0 36 26"
+                      fill="none"
+                      className="transition-transform duration-300 ease-out"
+                      style={{ transform: `rotate(${isButtonHovered ? 0 : -45}deg)` }}
+                    >
+                      <path
+                        d="M20.5078 0C20.5051 7.18628 27.3242 13.0013 35.754 13.0013M35.7432 12.999C27.3134 12.999 20.49 18.814 20.4873 26.0003M0.75 13.0039H33.3462"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeMiterlimit="10"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* RIGHT IMAGE */}
+              {windowWidth < 1024 ? (
+                <div className="w-full md:mt-6 order-2">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    width={1200}
+                    height={700}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              ) : (
+                <div
+                  className="relative w-full flex items-center justify-center order-2 lg:order-2"
+                  style={{
+                    height:
+                      windowWidth < 1280
+                        ? (heights[i] || 500) * 1.2
+                        : heights[i] || 650,
+                  }}
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              )}
             </div>
           </div>
-
-          {/* RIGHT IMAGE */}
-          {windowWidth < 1024 ? (
-            <div className="w-full md:mt-6 order-2">
-              <Image
-                src={item.img}
-                alt={item.title}
-                width={1200}
-                height={700}
-                className="w-full h-auto object-contain"
-              />
-            </div>
-          ) : (
-            <div
-              className="relative w-full flex items-center justify-center order-2 lg:order-2"
-              style={{
-                height:
-                  windowWidth < 1280
-                    ? (heights[i] || 500) * 1.2
-                    : heights[i] || 650,
-              }}
-            >
-              <Image
-                src={item.img}
-                alt={item.title}
-                fill
-                className="object-contain"
-              />
-            </div>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
   );
 }
