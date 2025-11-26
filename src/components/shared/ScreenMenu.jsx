@@ -1,11 +1,15 @@
 "use client";
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import React, {
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
 const menuItems = [
   { id: "home", name: "Homes" },
-  { id: "about", name: "About" },
   { id: "skills", name: "Skills" },
   { id: "brands", name: "Brands" },
   { id: "awards", name: "Awards" },
@@ -14,9 +18,10 @@ const menuItems = [
 
 const FullScreenMenu = forwardRef(({ onClose }, ref) => {
   const containerRef = useRef(null);
-  const leftBgRef = useRef(null);
-  const rightBgRef = useRef(null);
-  const contentRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const menuRef = useRef(null);
+  const topLogoRef = useRef(null);
   const rightElementsRef = useRef([]);
 
   const animateMenu = (direction) => {
@@ -31,13 +36,19 @@ const FullScreenMenu = forwardRef(({ onClose }, ref) => {
     });
 
     if (direction === "open") {
-      tl.to(leftBgRef.current, { y: 0 })
-        .to(rightBgRef.current, { y: 0 }, "<")
+      tl.to(leftRef.current, { y: 0 })
+        .to(rightRef.current, { y: 0 }, "<")
         .fromTo(
-          contentRef.current.children,
+          topLogoRef.current,
+          { opacity: 0, y: -20 },
+          { opacity: 1, y: 0, duration: 0.5 },
+          "-=0.3"
+        )
+        .fromTo(
+          menuRef.current.children,
           { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, stagger: 0.06, duration: 0.5 },
-          "-=0.4"
+          { opacity: 1, y: 0, stagger: 0.08, duration: 0.5 },
+          "-=0.3"
         )
         .fromTo(
           rightElementsRef.current,
@@ -46,32 +57,27 @@ const FullScreenMenu = forwardRef(({ onClose }, ref) => {
           "-=0.4"
         );
     } else {
-      tl.to([...contentRef.current.children, ...rightElementsRef.current], {
-        opacity: 0,
-        y: -20,
-        stagger: 0.05,
-        duration: 0.3,
-      })
-        .to(leftBgRef.current, { y: "-100%" })
-        .to(rightBgRef.current, { y: "100%" }, "<");
+      tl.to(
+        [topLogoRef.current, ...menuRef.current.children, ...rightElementsRef.current],
+        {
+          opacity: 0,
+          y: -20,
+          stagger: 0.05,
+          duration: 0.3,
+        }
+      )
+        .to(leftRef.current, { y: "-100%" })
+        .to(rightRef.current, { y: "100%" }, "<");
     }
   };
 
-  const handleMenuClick = (sectionId) => {
-    // Close the menu first
+  const handleMenuClick = (id) => {
     animateMenu("close");
     onClose();
-
-    // Use setTimeout to ensure menu is closed before scrolling
     setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }, 300); // Match this delay with your menu close animation duration
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 300);
   };
 
   useImperativeHandle(ref, () => ({
@@ -93,49 +99,64 @@ const FullScreenMenu = forwardRef(({ onClose }, ref) => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-50 hidden overflow-hidden min-h-screen min-w-screen"
+      className="fixed inset-0 z-[200] hidden w-screen h-screen overflow-hidden"
     >
-      {/* LEFT BG */}
+      {/* LEFT PANEL */}
       <div
-        ref={leftBgRef}
-        className="absolute top-0 left-0 w-full md:w-1/2 h-full bg-[#121212] translate-y-[-100vh]"
+        ref={leftRef}
+        className="absolute top-0 left-0 h-full bg-[#151515] w-full md:w-1/2 translate-y-[-100%]"
       />
 
-      {/* RIGHT BG (desktop only) */}
+      {/* RIGHT PANEL */}
       <div
-        ref={rightBgRef}
-        className="hidden md:block absolute top-0 right-0 w-1/2 h-full bg-black translate-y-[100vh]"
+        ref={rightRef}
+        className="absolute top-0 right-0 h-full w-full md:w-1/2 bg-black translate-y-[100%]"
       />
 
-      {/* CONTENT */}
-      <div className="absolute inset-0 flex justify-center text-white">
-        {/* Constrain width on lg screens */}
-        <div className="w-full px-6 sm:px-8 md:px-12 xl:px-16 flex flex-col md:flex-row justify-between">
-          {/* LEFT MENU */}
-          <div ref={contentRef} className="flex flex-col space-y-4 pt-10">
-            {/* TOP LOGO */}
-            <div className="z-[60] opacity-0">
-              <Image
-                src="/images/Fardeen-Ahmed-logo.png"
-                alt="Logo"
-                width={150}
-                height={150}
-                className="object-cover"
-              />
-            </div>
+      {/* TOP BAR */}
+      <div className="absolute top-6 left-6 right-6 z-[300] flex justify-between items-center">
+        <div ref={topLogoRef} className="opacity-0">
+          <div className="w-[160px] h-auto">
+            <Image
+              src="/images/logo-update.png"
+              alt="logo"
+              width={800}
+              height={800}
+              className="object-cover"
+            />
+          </div>
+        </div>
 
+        {/* X BUTTON */}
+        <div
+          onClick={() => {
+            animateMenu("close");
+            onClose();
+          }}
+          className="cursor-pointer w-9 h-9 relative z-[400] pt-6 mr-1 lg:mr-5 xl:mr-0 2xl:mr-10"
+        >
+          <span className="absolute block w-full h-[2px] bg-white rotate-45"></span>
+          <span className="absolute block w-full h-[2px] bg-white -rotate-45"></span>
+        </div>
+      </div>
+
+      {/* MAIN CONTENT */}
+      <div className="absolute inset-0 flex flex-col md:flex-row w-full h-full overflow-hidden">
+
+        {/* LEFT MENU */}
+        <div className="w-full md:w-1/2 px-8 md:px-10 pt-28 text-white flex flex-col">
+          <div ref={menuRef} className="space-y-10">
             {menuItems.map((item, index) => (
               <div
                 key={item.id}
                 onClick={() => handleMenuClick(item.id)}
-                className="group flex items-center justify-between w-[350px] cursor-pointer py-2 border-b border-gray-700 opacity-0"
+                className="flex justify-between items-center border-b border-[#2b2b2b] cursor-pointer group opacity-0 pb-5"
               >
-                {/* Hide IDs on mobile & md */}
-                <span className="text-2xl text-gray-400 group-hover:text-white transition hidden md:inline">
-                  {String(index + 1).padStart(2, '0')}
+                <span className="text-lg text-gray-400 tracking-widest">
+                  0{index + 1}
                 </span>
 
-                <span className="text-5xl font-extrabold group-hover:pl-4 transition-all">
+                <span className="text-5xl font-semibold group-hover:pl-4 transition-all duration-300 tracking-tight">
                   {item.name}
                 </span>
 
@@ -145,53 +166,33 @@ const FullScreenMenu = forwardRef(({ onClose }, ref) => {
               </div>
             ))}
           </div>
+        </div>
 
-          {/* RIGHT SIDE (desktop only) */}
-          <div className="hidden md:flex flex-col justify-between w-[400px] pt-10">
-            {/* IMAGE */}
-            <div
-              ref={(el) => (rightElementsRef.current[0] = el)}
-              className="flex-1 flex items-end justify-center opacity-0"
-            >
-              <div className="relative w-[320px] h-[400px] rounded-lg overflow-hidden shadow-xl">
-                <Image
-                  src="/images/menu-image.jpg"
-                  alt="Menu Image"
-                  width={500}
-                  height={700}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            </div>
+        {/* RIGHT SIDE IMAGE — only for md+ */}
+        <div className="hidden md:flex items-end justify-center relative w-1/2 overflow-hidden">
 
-            {/* FOOTER */}
-            <div
-              ref={(el) => (rightElementsRef.current[1] = el)}
-              className="text-sm opacity-0"
-            >
-              © 2025 Fardeen Ahmed, All rights reserved.
-            </div>
+          {/* Vertical MENU text */}
+          <div
+            ref={(el) => (rightElementsRef.current[0] = el)}
+            className="absolute left-0 bottom-[150px] text-[120px] opacity-[0.07] font-extrabold rotate-90 tracking-tight z-10 hidden xl:block"
+          >
+            MENU
           </div>
 
-          {/* CLOSE ICON (always right) */}
-          <div className="absolute top-10 right-6 md:right-16 z-[60]">
-            <div
-              onClick={() => {
-                animateMenu("close");
-                onClose();
-              }}
-              className="cursor-pointer relative w-10 h-10 flex items-center justify-center"
-            >
-              <span className="absolute block w-8 h-[2px] bg-white rotate-45" />
-              <span className="absolute block w-8 h-[2px] bg-white -rotate-45" />
-            </div>
+          {/* Image constrained to container width */}
+          <div
+            ref={(el) => (rightElementsRef.current[1] = el)}
+            className="relative w-full max-w-full h-[400px] md:h-[550px]  xl:h-[600px] 2xl:h-[800px] opacity-0 flex items-end"
+          >
+            <Image
+              src="/images/bio.png"
+              alt="menu image"
+              fill
+              className="object-cover object-top"
+            />
           </div>
         </div>
-      </div>
 
-      {/* BACKGROUND TEXT */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 text-[200px] font-extrabold text-white opacity-5 pointer-events-none">
-        MENU
       </div>
     </div>
   );

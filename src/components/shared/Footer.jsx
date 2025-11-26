@@ -5,7 +5,6 @@ import Image from "next/image";
 export default function Footer() {
   const companyLinks = [
     { name: "Home", id: "home" },
-    { name: "About", id: "about" },
     { name: "Brands", id: "brands" },
     { name: "Skills", id: "skills" },
     { name: "Awards", id: "awards" },
@@ -114,12 +113,12 @@ export default function Footer() {
 
       {/* SOCIAL + COPYRIGHT */}
       <div className="section-padding 2xl:max-w-[1500px] 2xl:mx-auto border-t border-[#828282] mt-[40px]">
-        <div className="flex flex-col lg:flex-row items-center justify-between  py-[35px] ">
-          <p className="text-[#f5f7f5bc] text-center lg:text-left">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between  py-[35px] ">
+          <p className="text-[#f5f7f5bc] text-left lg:text-left">
             All rights reserved — 2025 © Fardeen Ahmed
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-left gap-4 mt-[22px] lg:mt-0">
             <button className="px-[36px] py-[4px] text-[14px] rounded-full border border-[#8[4px]8[4px]82] hover:bg-white hover:text-black transition-all">
               LINKEDIN
             </button>
