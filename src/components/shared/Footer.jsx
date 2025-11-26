@@ -75,9 +75,9 @@ export default function Footer() {
           <div className="flex flex-col h-full w-full justify-start">
             <h3 className="text-xl md:text-[26px] font-semibold">Address</h3>
             <p className="text-[#cdcdcd] leading-relaxed mt-4">
-              Germany — 785 15h Street, Office 478 <br /> Berlin, De 81566
+              Nokia Care Building, <br /> South Dumdum,
             </p>
-            <p className="text-[#cdcdcd] mt-2">(704) 555-0127</p>
+            <p className="text-[#cdcdcd] mt-2">Kolkata , India .</p>
             <p className="text-[#cdcdcd] mt-2">root@fardeenahmed.info</p>
           </div>
 
