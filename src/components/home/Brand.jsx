@@ -34,7 +34,8 @@ const Brand = () => {
       className="bg-black text-[#f5f7f5] pt-[100px] lg:pt-[140px] font-sans z-10"
     >
       <div className="flex flex-col lg:flex-row justify-between items-start lg:gap-20 xl:gap-8 section-padding 2xl:max-w-[1500px] 2xl:mx-auto">
-        <div>
+        {/* TITLE */}
+        <div className="flex flex-col justify-start">
           <h1
             ref={titleRef}
             className="text-[45px] md:text-[55px] xl:text-[90px] font-bold leading-none lg:max-w-3xl xl:max-w-4xl 2xl:max-w-3xl"
@@ -43,10 +44,11 @@ const Brand = () => {
           </h1>
         </div>
 
-        <div className="flex flex-col justify-center">
+        {/* DESCRIPTION + BUTTON */}
+        <div className="flex flex-col justify-start lg:items-start">
           <p
             ref={peraRef}
-            className="text-[18px] text-[#f5f7f5cc] leading-relaxed my-[50px] max-w-2xl lg:max-w-sm "
+            className="text-[18px] text-[#f5f7f5cc] leading-relaxed my-[20px] lg:my-0 max-w-2xl lg:max-w-sm text-left"
           >
             These are just a few Brands that I personally enjoy the most. I would
             be glad to show you a bunch of other brands that I have done so far.
@@ -66,8 +68,9 @@ const Brand = () => {
 
             {/* Circle button with SVG */}
             <button
-              className={`rounded-full w-16 h-16 flex justify-center items-center text-3xl flex-shrink-0 border-2 border-[#f5f7f5] transition-colors duration-300 ${isHovered ? "bg-white text-black" : "bg-transparent text-[#f5f7f5]"
-                }`}
+              className={`rounded-full w-16 h-16 flex justify-center items-center text-3xl flex-shrink-0 border-2 border-[#f5f7f5] transition-colors duration-300 ${
+                isHovered ? "bg-white text-black" : "bg-transparent text-[#f5f7f5]"
+              }`}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
@@ -79,9 +82,7 @@ const Brand = () => {
                 viewBox="0 0 36 26"
                 fill="none"
                 className="transition-transform duration-300 ease-out"
-                style={{
-                  transform: `rotate(-45deg)`,
-                }}
+                style={{ transform: `rotate(-45deg)` }}
               >
                 <path
                   d="M20.5078 0C20.5051 7.18628 27.3242 13.0013 35.754 13.0013M35.7432 12.999C27.3134 12.999 20.49 18.814 20.4873 26.0003M0.75 13.0039H33.3462"
@@ -92,7 +93,6 @@ const Brand = () => {
               </svg>
             </button>
           </div>
-
         </div>
       </div>
     </section>

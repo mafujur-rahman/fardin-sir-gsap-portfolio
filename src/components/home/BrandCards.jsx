@@ -126,8 +126,8 @@ export default function BrandCards() {
         {items.map((item, i) => (
           <div
             key={i}
-            className={`w-full border-t border-[#828282] ${i === items.length - 1 ? "border-b border-[#828282]" : ""
-              }`}
+            className={`w-full border-t border-[#828282] ${i === items.length - 1 ? "border-b border-[#828282]" : ""} bg-black relative z-10`}
+              
           >
             <div
               ref={(el) => (cardsRef.current[i] = el)}
@@ -163,7 +163,7 @@ export default function BrandCards() {
                 </div>
 
                 {/* Button + Text */}
-                <div className="inline-flex items-center gap-6 mt-[40px] md:mt-[50px] flex-nowrap">
+                <div className="inline-flex items-center gap-6 mt-[40px] md:mt-[50px] xl:mt-[100px] flex-nowrap">
                   <span
                     className="common-btn-size text-[#f5f7f5] transition-colors duration-300 cursor-pointer"
                     onMouseEnter={() => handleButtonHover(i, true)}
