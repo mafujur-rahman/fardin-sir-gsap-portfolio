@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.section-padding {
+  @apply px-[15px] md:px-[40px] lg:px-[58px] xl:px-[15px] 
+}
+
+.common-btn-size {
+  @apply text-[20px]  mr-5
+}

@@ -83,7 +83,7 @@ const Navbar = () => {
       <nav className="w-full bg-[#121212] text-white py-6 overflow-hidden relative z-10">
         <div className="px-6 sm:px-8 md:px-12 xl:px-16 flex items-center justify-between">
           {/* LOGO */}
-          <div className="w-[110px] h-auto flex items-center">
+          <div className="w-[110px] h-auto flex items-center border border-white">
             <Image
               src="/images/Fardeen-Ahmed-logo.png"
               alt="logo"

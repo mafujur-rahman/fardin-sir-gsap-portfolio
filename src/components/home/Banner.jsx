@@ -52,7 +52,7 @@ const Banner = () => {
 
   // Scroll down on arrow click
   const handleScrollDown = () => {
-    const scrollDistance = window.innerHeight; // scroll down by one viewport height
+    const scrollDistance = window.innerHeight;
     gsap.to(window, {
       duration: 1.2,
       ease: "power2.inOut",
@@ -61,8 +61,8 @@ const Banner = () => {
   };
 
   return (
-    <section id='home' className="bg-[#121212] text-white h-auto lg:h-[90vh] overflow-hidden font-sans">
-      <div className="flex flex-col lg:flex-row ">
+    <section id='home' className="bg-black text-white h-auto lg:h-[90vh] overflow-hidden font-sans ">
+      <div className="flex flex-col lg:flex-row section-padding 2xl:max-w-[1800px] 2xl:mx-auto">
 
         {/* Left Image */}
         <div className="w-full lg:w-1/2 relative h-[80vh] lg:h-screen" >
@@ -76,29 +76,36 @@ const Banner = () => {
         </div>
 
         {/* Right Text */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-between px-6 sm:px-8 md:px-12 xl:px-16 py-10 md:py-16 xl:py-0 ">
+        <div className="w-full lg:w-1/2 flex flex-col justify-between pt-[100px] lg:pt-[140px]">
           <div className="flex flex-col justify-center flex-1">
-            <p
-              ref={helloRef}
-              className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl tracking-wider flex items-center justify-start overflow-hidden"
-            >
-              <span className="mr-2 text-[#deff00]">
-                <MdWavingHand />
+
+            <div className='flex items-center justify-start overflow-hidden'>
+              <span className="mr-2">
+                <img
+                  src="/images/title-icon.png"
+                  alt="Waving hand"
+                  className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
+                />
               </span>
-              👋 Hello, I’m Fardeen Ahmed
-            </p>
+              <p
+                ref={helloRef}
+                className="text-[22px]  md:text-[30px] lg:text-[26px] xl:text-[30px] text-[#f5f7f5] tracking-wider flex items-center justify-start overflow-hidden"
+              >
+                Hello, I’m Fardeen Ahmed
+              </p>
+            </div>
 
             <h1
               ref={titleRef}
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold leading-none mt-4 overflow-hidden"
+              className="text-[55px]  md:text-[90px] lg:text-[70px] xl:text-[105px] font-bold leading-none mt-4 overflow-hidden text-[#f5f7f5]"
             >
               Cyber Security <br /> Leader
             </h1>
 
             {/* Founder text and line */}
             <div ref={contentRef} className="lg:max-w-2xl xl:mx-0 flex flex-col xl:flex-row items-start xl:items-center gap-8 xl:gap-20 mt-6">
-              <div className="w-72 h-0.5 bg-gray-100 mx-auto xl:mx-0 hidden xl:block" />
-              <p className="text-lg md:text-2xl text-start text-gray-100 font-light">
+              <div className="w-72 h-0.5 bg-[#f5f7f5] mx-auto xl:mx-0 hidden xl:block mb-[35px]" />
+              <p className="text-[22px] text-start text-[#f5f7f5b3] font-light">
                 Founder of Ethical Den, Eduden & Hiyvr.ai
               </p>
             </div>
@@ -109,7 +116,7 @@ const Banner = () => {
                 <Link
                   key={label}
                   href="#"
-                  className="border border-white py-2 px-10 text-md font-medium tracking-wider hover:bg-white hover:text-gray-900 transition duration-300 rounded-full"
+                  className="border border-[#f5f7f5]/50 text-[#f5f7f5] py-[7px] px-[46px] text-[18px] font-medium tracking-wider hover:bg-white hover:text-gray-900 transition duration-300 rounded-full"
                 >
                   {label}
                 </Link>
@@ -117,14 +124,29 @@ const Banner = () => {
             </div>
 
             {/* Keep Scrolling */}
-            <div
-              onClick={handleScrollDown}
-              className="flex items-center justify-end gap-2 mt-12 cursor-pointer"
-            >
-              <p className="text-xs tracking-widest uppercase text-white text-right">
-                Keep <br /> Scrolling
-              </p>
-              <FaArrowDownLong className="w-6 h-6 animate-bounce text-white" />
+            <div className="relative mt-12 cursor-pointer hidden md:block ml-auto" onClick={handleScrollDown}>
+              <div className="flex items-center justify-end gap-2">
+                <p className="text-[16px] tracking-widest text-white font-sans text-right">
+                  Keep <br /> Scrolling
+                </p>
+                <div className="relative">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="72"
+                    viewBox="0 0 16 72"
+                    fill="none"
+                    className="relative top-0" // Adjust this to fine-tune
+                  >
+                    <path
+                      d="M16 63C11.578 63 7.99989 66.5781 7.99989 71C7.99989 66.5781 4.42196 63 0 63M7.30078 1H8.80078V71H7.30078V1Z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeMiterlimit="10"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
         </div>
