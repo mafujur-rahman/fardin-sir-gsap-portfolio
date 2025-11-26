@@ -65,7 +65,7 @@ const Banner = () => {
       <div className="flex flex-col lg:flex-row section-padding 2xl:max-w-[1800px] 2xl:mx-auto">
 
         {/* Left Image */}
-        <div className="w-full lg:w-1/2 relative h-screen">
+        <div className="w-full lg:w-1/2 relative h-screen md:mt-16">
           <Image
             src="/images/banner-update.png"
             alt="Fardeen Ahmed"
