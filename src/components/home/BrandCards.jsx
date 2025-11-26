@@ -17,12 +17,13 @@ export default function BrandCards() {
 
   const items = [
     {
-      title: "Ethicalden",
+      title: "Ethical Den",
       desc: "A cybersecurity-driven tech collective empowering the next generation of ethical hackers, builders and innovators.",
       role: "Founder & CEO",
       category: "Software Company",
       tag: "Cybersecurity, Tech , EdTech ",
       img: "/images/company/Ethicalden.png",
+      link: "https://www.ethicalden.com/"
     },
     {
       title: "Eduden",
@@ -31,6 +32,7 @@ export default function BrandCards() {
       category: "EdTech Platform",
       tag: "EdTech, Cybersecurity",
       img: "/images/company/Eduden.jpg",
+      link: "https://www.eduden.io/"
     },
     {
       title: "Hivyr",
@@ -39,6 +41,7 @@ export default function BrandCards() {
       category: "SaaS / AI Tools",
       tag: "AI, Productivity",
       img: "/images/company/hivyr.png",
+      link: "https://www.hivyr.ai/"
     },
     {
       title: "Corvtron",
@@ -47,6 +50,7 @@ export default function BrandCards() {
       category: "Robotics Company",
       tag: "Robotics, Tech",
       img: "/images/company/corvtron-2.png",
+      link: "https://www.corvtron.io/"
     },
   ];
 
@@ -164,15 +168,22 @@ export default function BrandCards() {
 
                 {/* Button + Text */}
                 <div className="inline-flex items-center gap-6 mt-[40px] md:mt-[50px] xl:mt-[100px] flex-nowrap">
-                  <span
+
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="common-btn-size text-[#f5f7f5] transition-colors duration-300 cursor-pointer"
                     onMouseEnter={() => handleButtonHover(i, true)}
                     onMouseLeave={() => handleButtonHover(i, false)}
                   >
                     View Brand
-                  </span>
+                  </a>
 
-                  <button
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`rounded-full w-16 h-16 flex justify-center items-center text-3xl flex-shrink-0 border-2 border-[#f5f7f5] transition-colors duration-300 ${hoveredButtonIndex === i ? "bg-white text-black" : "bg-transparent text-[#f5f7f5]"
                       }`}
                     onMouseEnter={() => handleButtonHover(i, true)}
@@ -194,8 +205,9 @@ export default function BrandCards() {
                         strokeMiterlimit="10"
                       />
                     </svg>
-                  </button>
+                  </a>
                 </div>
+
               </div>
 
               {/* RIGHT IMAGE */}
