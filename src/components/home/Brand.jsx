@@ -33,11 +33,11 @@ const Brand = () => {
       id="brands"
       className="bg-black text-[#f5f7f5] pt-[100px] lg:pt-[140px] font-sans z-10"
     >
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:gap-8 section-padding 2xl:max-w-[1500px] 2xl:mx-auto">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:gap-20 xl:gap-8 section-padding 2xl:max-w-[1500px] 2xl:mx-auto">
         <div>
           <h1
             ref={titleRef}
-            className="text-[45px] md:text-[55px] xl:text-[90px] font-bold leading-none lg:max-w-2xl xl:max-w-4xl 2xl:max-w-3xl"
+            className="text-[45px] md:text-[55px] xl:text-[90px] font-bold leading-none lg:max-w-3xl xl:max-w-4xl 2xl:max-w-3xl"
           >
             Some of the impressive Brands I have
           </h1>
@@ -46,7 +46,7 @@ const Brand = () => {
         <div className="flex flex-col justify-center">
           <p
             ref={peraRef}
-            className="text-[18px] text-[#f5f7f5cc] leading-relaxed mb-10 max-w-2xl"
+            className="text-[18px] text-[#f5f7f5cc] leading-relaxed my-[50px] max-w-2xl lg:max-w-sm "
           >
             These are just a few Brands that I personally enjoy the most. I would
             be glad to show you a bunch of other brands that I have done so far.

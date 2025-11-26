@@ -77,7 +77,7 @@ export default function BrandCards() {
 
   // GSAP Animations for LG+ devices
   useEffect(() => {
-    if (windowWidth < 1280) return;
+    if (windowWidth < 1024) return;
 
     const ctx = gsap.context(() => {
       const cards = cardsRef.current;
@@ -152,10 +152,10 @@ export default function BrandCards() {
                 className="flex flex-col justify-between w-full order-1"
               >
                 <div className="space-y-4 w-max">
-                  <h1 className="text-[45px] md:text-[60px] font-bold leading-none mb-[40px] md:mb-[50px] lg:mb-[40px]">
+                  <h1 className="text-[45px] md:text-[60px] font-bold leading-none ">
                     {item.title}
                   </h1>
-                  <p className=" text-[18px]  text-[#f5f7f5cc] leading-relaxed max-w-[280px] md:max-w-xl lg:max-w-md xl:max-w-lg mb-[40px] md:mb-[50px] lg:mb-[40px]">
+                  <p className=" text-[18px]  text-[#f5f7f5cc] leading-relaxed max-w-[280px] md:max-w-xl lg:max-w-md xl:max-w-lg my-[40px] md:my-[50px] lg:my-[40px]">
                     {item.desc}
                   </p>
                 </div>
@@ -176,7 +176,7 @@ export default function BrandCards() {
                 </div>
 
                 {/* Button + Text */}
-                <div className="inline-flex items-center gap-6 mt-5 flex-nowrap">
+                <div className="inline-flex items-center gap-6 mt-[40px] md:mt-[50px] flex-nowrap">
                   {/* Text */}
                   <span
                     className="common-btn-size text-[#f5f7f5] transition-colors duration-300 cursor-pointer"
@@ -216,7 +216,7 @@ export default function BrandCards() {
 
               {/* RIGHT IMAGE */}
               {windowWidth < 1024 ? (
-                <div className="w-full md:mt-6 order-2">
+                <div className="w-full my-[40px] md:my-[50px] order-2">
                   <Image
                     src={item.img}
                     alt={item.title}

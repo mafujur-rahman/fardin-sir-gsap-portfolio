@@ -136,13 +136,13 @@ const Achievemnt = () => {
     return (
         <div id="awards" className="min-h-screen bg-black text-[#f5f7f5] pt-[100px] lg:pt-[140px]">
             <div className="section-padding 2xl:max-w-[1350px] 2xl:mx-auto">
-                <p ref={ParRef} className="text-[16px] font-bold tracking-widest uppercase mb-4">
+                <p ref={ParRef} className="text-[16px] font-bold tracking-widest uppercase ">
                     Achieved Award
                 </p>
 
                 <h1
                     ref={titleRef}
-                    className="text-[45px]  md:text-[72px] xl:text-[90px] font-bold leading-none mb-[50px] xl:mb-[70px]"
+                    className="text-[40px]  md:text-[72px] xl:text-[90px] font-bold leading-none mt-[22px] mb-[50px] xl:mb-[70px]"
                 >
                     My achievement
                     <br />
