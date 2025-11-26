@@ -185,7 +185,7 @@ const FullScreenMenu = forwardRef(({ onClose }, ref) => {
             className="relative w-full max-w-full h-[400px] md:h-[550px]  xl:h-[600px] 2xl:h-[800px] opacity-0 flex items-end"
           >
             <Image
-              src="/images/bio.png"
+              src="/images/menu-img.png"
               alt="menu image"
               fill
               className="object-cover object-top"

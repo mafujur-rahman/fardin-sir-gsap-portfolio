@@ -12,19 +12,13 @@ export default function BrandCards() {
   const leftRefs = useRef([]);
   const [windowWidth, setWindowWidth] = useState(0);
   const [heights, setHeights] = useState([]);
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
-  const buttonIconRef = useRef(null);
   const [hoveredButtonIndex, setHoveredButtonIndex] = useState(null);
-  const buttonRefs = useRef([]); // array of button SVG refs
-
-
-
+  const buttonRefs = useRef([]);
 
   const items = [
     {
       title: "Ethicalden",
-      desc:
-        "A cybersecurity-driven tech collective empowering the next generation of ethical hackers, builders and innovators.",
+      desc: "A cybersecurity-driven tech collective empowering the next generation of ethical hackers, builders and innovators.",
       role: "Founder & CEO",
       category: "Website",
       tag: "Business, Elegant",
@@ -32,8 +26,7 @@ export default function BrandCards() {
     },
     {
       title: "Eduden",
-      desc:
-        "A next-gen learning platform helping students master ethical hacking & emerging technologies through real-world labs.",
+      desc: "A next-gen learning platform helping students master ethical hacking & emerging technologies through real-world labs.",
       role: "Founder & CEO",
       category: "Website",
       tag: "Business, Elegant",
@@ -41,8 +34,7 @@ export default function BrandCards() {
     },
     {
       title: "Hivyr",
-      desc:
-        "AI-powered workflow intelligence tools designed to automate operations and scale businesses efficiently.",
+      desc: "AI-powered workflow intelligence tools designed to automate operations and scale businesses efficiently.",
       role: "Founder & CEO",
       category: "Website",
       tag: "Business, Elegant",
@@ -50,8 +42,7 @@ export default function BrandCards() {
     },
     {
       title: "Corvtron",
-      desc:
-        "Leading innovative robotics solutions to automate tasks, enhance efficiency, and transform industries with cutting-edge technology.",
+      desc: "Leading innovative robotics solutions to automate tasks, enhance efficiency, and transform industries with cutting-edge technology.",
       role: "Founder & CEO",
       category: "Website",
       tag: "Business, Elegant",
@@ -59,23 +50,21 @@ export default function BrandCards() {
     },
   ];
 
-  // Set window width after mount
+  // Track window width
   useEffect(() => {
     setWindowWidth(window.innerWidth);
-
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Capture left content heights for XL/2XL images
+  // Capture left content heights
   useEffect(() => {
     const leftHeights = leftRefs.current.map((ref) => ref?.offsetHeight || 0);
     setHeights(leftHeights);
   }, [windowWidth]);
 
-  // GSAP Animations for LG+ devices
+  // GSAP animations for LG+ devices
   useEffect(() => {
     if (windowWidth < 1024) return;
 
@@ -86,7 +75,6 @@ export default function BrandCards() {
         if (!card) return;
         const leftContent = leftRefs.current[i];
 
-        // Animate left content
         gsap.from(leftContent, {
           x: -200,
           opacity: 0,
@@ -99,7 +87,6 @@ export default function BrandCards() {
           },
         });
 
-        // Pin card for smooth scroll
         const nextCard = cards[i + 1];
         ScrollTrigger.create({
           trigger: card,
@@ -117,7 +104,7 @@ export default function BrandCards() {
     return () => ctx.revert();
   }, [windowWidth]);
 
-  // btn
+  // Button hover animation
   const handleButtonHover = (index, isHovered) => {
     setHoveredButtonIndex(isHovered ? index : null);
     const svg = buttonRefs.current[index];
@@ -139,7 +126,7 @@ export default function BrandCards() {
         {items.map((item, i) => (
           <div
             key={i}
-            className={`w-full border-t border-[#828282] z-30 ${i === items.length - 1 ? "border-b border-[#828282]" : ""
+            className={`w-full border-t border-[#828282] ${i === items.length - 1 ? "border-b border-[#828282]" : ""
               }`}
           >
             <div
@@ -152,10 +139,10 @@ export default function BrandCards() {
                 className="flex flex-col justify-between w-full order-1"
               >
                 <div className="space-y-4 w-max">
-                  <h1 className="text-[45px] md:text-[60px] font-bold leading-none ">
+                  <h1 className="text-[45px] md:text-[60px] font-bold leading-none">
                     {item.title}
                   </h1>
-                  <p className=" text-[18px]  text-[#f5f7f5cc] leading-relaxed max-w-[280px] md:max-w-xl lg:max-w-md xl:max-w-lg my-[40px] md:my-[50px] lg:my-[40px]">
+                  <p className="text-[18px] text-[#f5f7f5cc] leading-relaxed max-w-[280px] md:max-w-xl lg:max-w-md xl:max-w-lg my-[40px] md:my-[50px] lg:my-[40px]">
                     {item.desc}
                   </p>
                 </div>
@@ -177,7 +164,6 @@ export default function BrandCards() {
 
                 {/* Button + Text */}
                 <div className="inline-flex items-center gap-6 mt-[40px] md:mt-[50px] flex-nowrap">
-                  {/* Text */}
                   <span
                     className="common-btn-size text-[#f5f7f5] transition-colors duration-300 cursor-pointer"
                     onMouseEnter={() => handleButtonHover(i, true)}
@@ -186,7 +172,6 @@ export default function BrandCards() {
                     View Brand
                   </span>
 
-                  {/* Circle button with SVG */}
                   <button
                     className={`rounded-full w-16 h-16 flex justify-center items-center text-3xl flex-shrink-0 border-2 border-[#f5f7f5] transition-colors duration-300 ${hoveredButtonIndex === i ? "bg-white text-black" : "bg-transparent text-[#f5f7f5]"
                       }`}
@@ -211,7 +196,6 @@ export default function BrandCards() {
                     </svg>
                   </button>
                 </div>
-
               </div>
 
               {/* RIGHT IMAGE */}
@@ -225,15 +209,22 @@ export default function BrandCards() {
                     className="w-full h-auto object-contain"
                   />
                 </div>
+              ) : windowWidth >= 1024 && windowWidth < 1280 ? (
+                // LG devices
+                <div className="w-full order-2 flex items-start justify-start">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    width={heights[i] ? heights[i] * 1.3 : 600}
+                    height={heights[i] ? heights[i] * 1.3 : 600}
+                    className="object-contain"
+                  />
+                </div>
               ) : (
+                // XL / 2XL devices
                 <div
-                  className="relative w-full flex items-center justify-center order-2 lg:order-2"
-                  style={{
-                    height:
-                      windowWidth < 1280
-                        ? (heights[i] || 500) * 1.2
-                        : heights[i] || 650,
-                  }}
+                  className="relative w-full flex items-start justify-center order-2"
+                  style={{ height: heights[i] || 650 }}
                 >
                   <Image
                     src={item.img}
@@ -243,6 +234,7 @@ export default function BrandCards() {
                   />
                 </div>
               )}
+
             </div>
           </div>
         ))}
