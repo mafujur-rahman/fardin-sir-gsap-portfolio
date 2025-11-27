@@ -11,21 +11,16 @@ export default function Footer() {
     { name: "Contact", id: "contact" },
   ];
 
-  // Ensure smooth scroll works in client
   const handleScroll = (id) => {
     const target = document.getElementById(id);
     if (target) {
-      // Use offsetTop if parent has scroll
       const top = target.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
   return (
-    <footer id="contact" className="bg-black text-[#f5f7f5] w-full pt-[100px] lg:pt-[140px] ">
+    <footer id="contact" className="bg-black text-[#f5f7f5] w-full pt-[100px] lg:pt-[140px]">
       <div className="section-padding 2xl:max-w-[1500px] 2xl:mx-auto">
 
         {/* BIG EMAIL */}
@@ -34,13 +29,14 @@ export default function Footer() {
         </h1>
 
         {/* TOP BORDER */}
-        <div className="w-full border-t border-[#828282] mt-[40px] mb-[75px] "></div>
+        <div className="w-full border-t border-[#828282] mt-[40px] mb-[75px]"></div>
 
         {/* GRID CONTENT */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-y-12 md:gap-x-4 lg:gap-x-16 xl:gap-x-40">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-y-12 md:gap-x-4 lg:gap-x-8 xl:gap-x-12 2xl:gap-x-16">
+
           {/* LOGO + TEXT */}
           <div className="flex flex-col h-full w-full justify-start">
-            <div className="w-[220px] h-auto flex items-center ">
+            <div className="w-[220px] h-auto flex items-center">
               <Image
                 src="/images/logo-update.png"
                 alt="logo"
@@ -72,7 +68,7 @@ export default function Footer() {
           </div>
 
           {/* ADDRESS */}
-          <div className="flex flex-col h-full w-full justify-start">
+          <div className="flex flex-col h-full w-full justify-start xl:-ml-10 2xl:-ml-16">
             <h3 className="text-xl md:text-[26px] font-semibold">Address</h3>
             <p className="text-[#cdcdcd] leading-relaxed mt-4">
               Nokia Care Building, <br /> South Dumdum,
@@ -82,9 +78,9 @@ export default function Footer() {
           </div>
 
           {/* CONTACT FORM */}
-          <div className="flex flex-col h-full w-full justify-start">
+          <div className="flex flex-col h-full w-full justify-start xl:-ml-10 2xl:-ml-14">
             <h3 className="text-xl md:text-[26px] font-semibold">Contact</h3>
-            <form className="flex flex-col gap-3 mt-4">
+            <form className="flex flex-col gap-3 mt-4 w-full xl:w-[110%] 2xl:w-[120%]">
               <input
                 type="text"
                 placeholder="Your Name"
@@ -107,19 +103,21 @@ export default function Footer() {
               </button>
             </form>
           </div>
+
         </div>
+
 
       </div>
 
       {/* SOCIAL + COPYRIGHT */}
       <div className="section-padding 2xl:max-w-[1500px] 2xl:mx-auto border-t border-[#828282] mt-[40px]">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between  py-[35px] ">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-[35px]">
           <p className="text-[#f5f7f5bc] text-left lg:text-left">
             All rights reserved — 2025 © Fardeen Ahmed
           </p>
 
           <div className="flex flex-wrap items-center justify-left gap-4 mt-[22px] lg:mt-0">
-            <button className="px-[36px] py-[4px] text-[14px] rounded-full border border-[#8[4px]8[4px]82] hover:bg-white hover:text-black transition-all">
+            <button className="px-[36px] py-[4px] text-[14px] rounded-full border border-[#828282] hover:bg-white hover:text-black transition-all">
               LINKEDIN
             </button>
             <button className="px-[36px] py-[4px] text-[14px] rounded-full border border-[#828282] hover:bg-white hover:text-black transition-all">
